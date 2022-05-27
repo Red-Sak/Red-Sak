@@ -10,10 +10,12 @@ html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
+  overflow: auto;
 }
 
 body {
   margin: 0;
+  overflow: hidden;
 }
 
 article,
@@ -2073,6 +2075,12 @@ pre code {
   min-height: 1px;
   padding-right: 15px;
   padding-left: 15px;
+}
+.flexCenter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .col-xs-1,
@@ -4431,7 +4439,6 @@ tbody.collapse.in {
   content: "";
   border-top: 0;
   border-bottom: 4px dashed;
-  border-bottom: 4px solid\9;
 }
 
 .dropup .dropdown-menu,
@@ -5137,7 +5144,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
   max-height: 340px;
 }
 
-@media (max-device-width: 480px) and (orientation: landscape) {
+@media (max-width: 480px) and (orientation: landscape) {
   .navbar-fixed-bottom .navbar-collapse,
   .navbar-fixed-top .navbar-collapse {
     max-height: 200px;
