@@ -375,6 +375,14 @@ nav .caret {
 .mg-md {
   margin-top: 10px;
   margin-bottom: 20px;
+  font-size: 20px;
+}
+.mg-md_margin {
+  margin-bottom: 16px;
+  margin-top: 08px;
+  color: black !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
 }
 .mg-lg {
   margin-top: 10px;
@@ -628,8 +636,9 @@ h4 {
   margin-bottom: 14px;
   margin-top: 24px;
 }
-.white {
+.text_color-size {
   color: white !important;
+  font-size: 20px;
 }
 .black {
   color: #000;
@@ -660,6 +669,9 @@ h4 {
 }
 .bgc-atomic-tangerine {
   background-color: #94380a;
+}
+.color {
+  color: white !important;
 }
 .tc-white {
   color: white !important;
@@ -719,6 +731,9 @@ h4 {
   }
   .nav-center.navbar .nav {
     max-width: 100%;
+  }
+  .colm-sm-12_sizeText {
+    font-size: 20px !important;
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {

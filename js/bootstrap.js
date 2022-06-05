@@ -6,219 +6,219 @@
 if ("undefined" == typeof jQuery) {
   throw new Error("Bootstrap's JavaScript requires jQuery");
 }
-+(function (a) {
-  var b = a.fn.jquery.split(" ")[0].split(".");
-  if ((b[0] < 2 && b[1] < 9) || (1 == b[0] && 9 == b[1] && b[2] < 1)) {
++(function (d) {
+  var c = d.fn.jquery.split(" ")[0].split(".");
+  if ((c[0] < 2 && c[1] < 9) || (1 == c[0] && 9 == c[1] && c[2] < 1)) {
     throw new Error(
       "Bootstrap's JavaScript requires jQuery version 1.9.1 or higher"
     );
   }
 })(jQuery),
-  +(function (a) {
-    function b() {
-      var d = document.createElement("bootstrap"),
-        h = {
+  +(function (d) {
+    function c() {
+      var b = document.createElement("bootstrap"),
+        a = {
           WebkitTransition: "webkitTransitionEnd",
           MozTransition: "transitionend",
           OTransition: "oTransitionEnd otransitionend",
           transition: "transitionend",
         };
-      for (var c in h) {
-        if (void 0 !== d.style[c]) {
-          return { end: h[c] };
+      for (var e in a) {
+        if (void 0 !== b.style[e]) {
+          return { end: a[e] };
         }
       }
       return !1;
     }
-    (a.fn.emulateTransitionEnd = function (c) {
-      var d = !1,
-        e = this;
-      a(this).one("bsTransitionEnd", function () {
-        d = !0;
+    (d.fn.emulateTransitionEnd = function (g) {
+      var f = !1,
+        b = this;
+      d(this).one("bsTransitionEnd", function () {
+        f = !0;
       });
-      var i = function () {
-        d || a(e).trigger(a.support.transition.end);
+      var a = function () {
+        f || d(b).trigger(d.support.transition.end);
       };
-      return setTimeout(i, c), this;
+      return setTimeout(a, g), this;
     }),
-      a(function () {
-        (a.support.transition = b()),
-          a.support.transition &&
-            (a.event.special.bsTransitionEnd = {
-              bindType: a.support.transition.end,
-              delegateType: a.support.transition.end,
-              handle: function (c) {
-                return a(c.target).is(this)
-                  ? c.handleObj.handler.apply(this, arguments)
+      d(function () {
+        (d.support.transition = c()),
+          d.support.transition &&
+            (d.event.special.bsTransitionEnd = {
+              bindType: d.support.transition.end,
+              delegateType: d.support.transition.end,
+              handle: function (a) {
+                return d(a.target).is(this)
+                  ? a.handleObj.handler.apply(this, arguments)
                   : void 0;
               },
             });
       });
   })(jQuery),
-  +(function (d) {
-    function e(f) {
+  +(function (i) {
+    function h(a) {
       return this.each(function () {
-        var h = d(this),
-          g = h.data("bs.alert");
-        g || h.data("bs.alert", (g = new b(this))),
-          "string" == typeof f && g[f].call(h);
+        var b = i(this),
+          c = b.data("bs.alert");
+        c || b.data("bs.alert", (c = new f(this))),
+          "string" == typeof a && c[a].call(b);
       });
     }
-    var a = '[data-dismiss="alert"]',
-      b = function (f) {
-        d(f).on("click", a, this.close);
+    var g = '[data-dismiss="alert"]',
+      f = function (a) {
+        i(a).on("click", g, this.close);
       };
-    (b.VERSION = "3.3.5"),
-      (b.TRANSITION_DURATION = 150),
-      (b.prototype.close = function (h) {
-        function f() {
-          j.detach().trigger("closed.bs.alert").remove();
+    (f.VERSION = "3.3.5"),
+      (f.TRANSITION_DURATION = 150),
+      (f.prototype.close = function (c) {
+        function e() {
+          a.detach().trigger("closed.bs.alert").remove();
         }
-        var g = d(this),
-          i = g.attr("data-target");
-        i || ((i = g.attr("href")), (i = i && i.replace(/.*(?=#[^\s]*$)/, "")));
-        var j = d(i);
-        h && h.preventDefault(),
-          j.length || (j = g.closest(".alert")),
-          j.trigger((h = d.Event("close.bs.alert"))),
-          h.isDefaultPrevented() ||
-            (j.removeClass("in"),
-            d.support.transition && j.hasClass("fade")
-              ? j
-                  .one("bsTransitionEnd", f)
-                  .emulateTransitionEnd(b.TRANSITION_DURATION)
-              : f());
+        var d = i(this),
+          b = d.attr("data-target");
+        b || ((b = d.attr("href")), (b = b && b.replace(/.*(?=#[^\s]*$)/, "")));
+        var a = i(b);
+        c && c.preventDefault(),
+          a.length || (a = d.closest(".alert")),
+          a.trigger((c = i.Event("close.bs.alert"))),
+          c.isDefaultPrevented() ||
+            (a.removeClass("in"),
+            i.support.transition && a.hasClass("fade")
+              ? a
+                  .one("bsTransitionEnd", e)
+                  .emulateTransitionEnd(f.TRANSITION_DURATION)
+              : e());
       });
-    var c = d.fn.alert;
-    (d.fn.alert = e),
-      (d.fn.alert.Constructor = b),
-      (d.fn.alert.noConflict = function () {
-        return (d.fn.alert = c), this;
+    var j = i.fn.alert;
+    (i.fn.alert = h),
+      (i.fn.alert.Constructor = f),
+      (i.fn.alert.noConflict = function () {
+        return (i.fn.alert = j), this;
       }),
-      d(document).on("click.bs.alert.data-api", a, b.prototype.close);
+      i(document).on("click.bs.alert.data-api", g, f.prototype.close);
   })(jQuery),
-  +(function (c) {
-    function d(e) {
+  +(function (h) {
+    function g(a) {
       return this.each(function () {
-        var g = c(this),
-          h = g.data("bs.button"),
-          f = "object" == typeof e && e;
-        h || g.data("bs.button", (h = new a(this, f))),
-          "toggle" == e ? h.toggle() : e && h.setState(e);
+        var c = h(this),
+          b = c.data("bs.button"),
+          d = "object" == typeof a && a;
+        b || c.data("bs.button", (b = new f(this, d))),
+          "toggle" == a ? b.toggle() : a && b.setState(a);
       });
     }
-    var a = function (e, f) {
-      (this.$element = c(e)),
-        (this.options = c.extend({}, a.DEFAULTS, f)),
+    var f = function (b, a) {
+      (this.$element = h(b)),
+        (this.options = h.extend({}, f.DEFAULTS, a)),
         (this.isLoading = !1);
     };
-    (a.VERSION = "3.3.5"),
-      (a.DEFAULTS = { loadingText: "loading..." }),
-      (a.prototype.setState = function (f) {
-        var e = "disabled",
-          g = this.$element,
-          h = g.is("input") ? "val" : "html",
-          m = g.data();
-        (f += "Text"),
-          null == m.resetText && g.data("resetText", g[h]()),
+    (f.VERSION = "3.3.5"),
+      (f.DEFAULTS = { loadingText: "loading..." }),
+      (f.prototype.setState = function (d) {
+        var i = "disabled",
+          c = this.$element,
+          b = c.is("input") ? "val" : "html",
+          a = c.data();
+        (d += "Text"),
+          null == a.resetText && c.data("resetText", c[b]()),
           setTimeout(
-            c.proxy(function () {
-              g[h](null == m[f] ? this.options[f] : m[f]),
-                "loadingText" == f
-                  ? ((this.isLoading = !0), g.addClass(e).attr(e, e))
+            h.proxy(function () {
+              c[b](null == a[d] ? this.options[d] : a[d]),
+                "loadingText" == d
+                  ? ((this.isLoading = !0), c.addClass(i).attr(i, i))
                   : this.isLoading &&
-                    ((this.isLoading = !1), g.removeClass(e).removeAttr(e));
+                    ((this.isLoading = !1), c.removeClass(i).removeAttr(i));
             }, this),
             0
           );
       }),
-      (a.prototype.toggle = function () {
-        var f = !0,
-          g = this.$element.closest('[data-toggle="buttons"]');
-        if (g.length) {
-          var e = this.$element.find("input");
-          "radio" == e.prop("type")
-            ? (e.prop("checked") && (f = !1),
-              g.find(".active").removeClass("active"),
+      (f.prototype.toggle = function () {
+        var b = !0,
+          a = this.$element.closest('[data-toggle="buttons"]');
+        if (a.length) {
+          var c = this.$element.find("input");
+          "radio" == c.prop("type")
+            ? (c.prop("checked") && (b = !1),
+              a.find(".active").removeClass("active"),
               this.$element.addClass("active"))
-            : "checkbox" == e.prop("type") &&
-              (e.prop("checked") !== this.$element.hasClass("active") &&
-                (f = !1),
+            : "checkbox" == c.prop("type") &&
+              (c.prop("checked") !== this.$element.hasClass("active") &&
+                (b = !1),
               this.$element.toggleClass("active")),
-            e.prop("checked", this.$element.hasClass("active")),
-            f && e.trigger("change");
+            c.prop("checked", this.$element.hasClass("active")),
+            b && c.trigger("change");
         } else {
           this.$element.attr("aria-pressed", !this.$element.hasClass("active")),
             this.$element.toggleClass("active");
         }
       });
-    var b = c.fn.button;
-    (c.fn.button = d),
-      (c.fn.button.Constructor = a),
-      (c.fn.button.noConflict = function () {
-        return (c.fn.button = b), this;
+    var e = h.fn.button;
+    (h.fn.button = g),
+      (h.fn.button.Constructor = f),
+      (h.fn.button.noConflict = function () {
+        return (h.fn.button = e), this;
       }),
-      c(document)
+      h(document)
         .on(
           "click.bs.button.data-api",
           '[data-toggle^="button"]',
-          function (e) {
-            var f = c(e.target);
-            f.hasClass("btn") || (f = f.closest(".btn")),
-              d.call(f, "toggle"),
-              c(e.target).is('input[type="radio"]') ||
-                c(e.target).is('input[type="checkbox"]') ||
-                e.preventDefault();
+          function (b) {
+            var a = h(b.target);
+            a.hasClass("btn") || (a = a.closest(".btn")),
+              g.call(a, "toggle"),
+              h(b.target).is('input[type="radio"]') ||
+                h(b.target).is('input[type="checkbox"]') ||
+                b.preventDefault();
           }
         )
         .on(
           "focus.bs.button.data-api blur.bs.button.data-api",
           '[data-toggle^="button"]',
-          function (e) {
-            c(e.target)
+          function (a) {
+            h(a.target)
               .closest(".btn")
-              .toggleClass("focus", /^focus(in)?$/.test(e.type));
+              .toggleClass("focus", /^focus(in)?$/.test(a.type));
           }
         );
   })(jQuery),
-  +(function (d) {
-    function e(f) {
+  +(function (i) {
+    function h(a) {
       return this.each(function () {
-        var h = d(this),
-          i = h.data("bs.carousel"),
-          j = d.extend({}, a.DEFAULTS, h.data(), "object" == typeof f && f),
-          g = "string" == typeof f ? f : j.slide;
-        i || h.data("bs.carousel", (i = new a(this, j))),
-          "number" == typeof f
-            ? i.to(f)
-            : g
-            ? i[g]()
-            : j.interval && i.pause().cycle();
+        var d = i(this),
+          c = d.data("bs.carousel"),
+          b = i.extend({}, g.DEFAULTS, d.data(), "object" == typeof a && a),
+          e = "string" == typeof a ? a : b.slide;
+        c || d.data("bs.carousel", (c = new g(this, b))),
+          "number" == typeof a
+            ? c.to(a)
+            : e
+            ? c[e]()
+            : b.interval && c.pause().cycle();
       });
     }
-    var a = function (f, g) {
-      (this.$element = d(f)),
+    var g = function (b, a) {
+      (this.$element = i(b)),
         (this.$indicators = this.$element.find(".carousel-indicators")),
-        (this.options = g),
+        (this.options = a),
         (this.paused = null),
         (this.sliding = null),
         (this.interval = null),
         (this.$active = null),
         (this.$items = null),
         this.options.keyboard &&
-          this.$element.on("keydown.bs.carousel", d.proxy(this.keydown, this)),
+          this.$element.on("keydown.bs.carousel", i.proxy(this.keydown, this)),
         "hover" == this.options.pause &&
           !("ontouchstart" in document.documentElement) &&
           this.$element
-            .on("mouseenter.bs.carousel", d.proxy(this.pause, this))
-            .on("mouseleave.bs.carousel", d.proxy(this.cycle, this));
+            .on("mouseenter.bs.carousel", i.proxy(this.pause, this))
+            .on("mouseleave.bs.carousel", i.proxy(this.cycle, this));
     };
-    (a.VERSION = "3.3.5"),
-      (a.TRANSITION_DURATION = 600),
-      (a.DEFAULTS = { interval: 5000, pause: "hover", wrap: !0, keyboard: !0 }),
-      (a.prototype.keydown = function (f) {
-        if (!/input|textarea/i.test(f.target.tagName)) {
-          switch (f.which) {
+    (g.VERSION = "3.3.5"),
+      (g.TRANSITION_DURATION = 600),
+      (g.DEFAULTS = { interval: 5000, pause: "hover", wrap: !0, keyboard: !0 }),
+      (g.prototype.keydown = function (a) {
+        if (!/input|textarea/i.test(a.target.tagName)) {
+          switch (a.which) {
             case 37:
               this.prev();
               break;
@@ -228,177 +228,177 @@ if ("undefined" == typeof jQuery) {
             default:
               return;
           }
-          f.preventDefault();
+          a.preventDefault();
         }
       }),
-      (a.prototype.cycle = function (f) {
+      (g.prototype.cycle = function (a) {
         return (
-          f || (this.paused = !1),
+          a || (this.paused = !1),
           this.interval && clearInterval(this.interval),
           this.options.interval &&
             !this.paused &&
             (this.interval = setInterval(
-              d.proxy(this.next, this),
+              i.proxy(this.next, this),
               this.options.interval
             )),
           this
         );
       }),
-      (a.prototype.getItemIndex = function (f) {
+      (g.prototype.getItemIndex = function (a) {
         return (
-          (this.$items = f.parent().children(".item")),
-          this.$items.index(f || this.$active)
+          (this.$items = a.parent().children(".item")),
+          this.$items.index(a || this.$active)
         );
       }),
-      (a.prototype.getItemForDirection = function (g, h) {
-        var i = this.getItemIndex(h),
-          j =
-            ("prev" == g && 0 === i) ||
-            ("next" == g && i == this.$items.length - 1);
-        if (j && !this.options.wrap) {
-          return h;
+      (g.prototype.getItemForDirection = function (d, c) {
+        var b = this.getItemIndex(c),
+          a =
+            ("prev" == d && 0 === b) ||
+            ("next" == d && b == this.$items.length - 1);
+        if (a && !this.options.wrap) {
+          return c;
         }
-        var q = "prev" == g ? -1 : 1,
-          f = (i + q) % this.$items.length;
-        return this.$items.eq(f);
+        var k = "prev" == d ? -1 : 1,
+          e = (b + k) % this.$items.length;
+        return this.$items.eq(e);
       }),
-      (a.prototype.to = function (g) {
-        var h = this,
-          f = this.getItemIndex(
+      (g.prototype.to = function (b) {
+        var a = this,
+          c = this.getItemIndex(
             (this.$active = this.$element.find(".item.active"))
           );
-        return g > this.$items.length - 1 || 0 > g
+        return b > this.$items.length - 1 || 0 > b
           ? void 0
           : this.sliding
           ? this.$element.one("slid.bs.carousel", function () {
-              h.to(g);
+              a.to(b);
             })
-          : f == g
+          : c == b
           ? this.pause().cycle()
-          : this.slide(g > f ? "next" : "prev", this.$items.eq(g));
+          : this.slide(b > c ? "next" : "prev", this.$items.eq(b));
       }),
-      (a.prototype.pause = function (f) {
+      (g.prototype.pause = function (a) {
         return (
-          f || (this.paused = !0),
+          a || (this.paused = !0),
           this.$element.find(".next, .prev").length &&
-            d.support.transition &&
-            (this.$element.trigger(d.support.transition.end), this.cycle(!0)),
+            i.support.transition &&
+            (this.$element.trigger(i.support.transition.end), this.cycle(!0)),
           (this.interval = clearInterval(this.interval)),
           this
         );
       }),
-      (a.prototype.next = function () {
+      (g.prototype.next = function () {
         return this.sliding ? void 0 : this.slide("next");
       }),
-      (a.prototype.prev = function () {
+      (g.prototype.prev = function () {
         return this.sliding ? void 0 : this.slide("prev");
       }),
-      (a.prototype.slide = function (m, w) {
-        var x = this.$element.find(".item.active"),
-          y = w || this.getItemForDirection(m, x),
-          f = this.interval,
-          g = "next" == m ? "left" : "right",
-          h = this;
-        if (y.hasClass("active")) {
+      (g.prototype.slide = function (a, s) {
+        var r = this.$element.find(".item.active"),
+          q = s || this.getItemForDirection(a, r),
+          p = this.interval,
+          o = "next" == a ? "left" : "right",
+          n = this;
+        if (q.hasClass("active")) {
           return (this.sliding = !1);
         }
-        var i = y[0],
-          j = d.Event("slide.bs.carousel", { relatedTarget: i, direction: g });
-        if ((this.$element.trigger(j), !j.isDefaultPrevented())) {
+        var e = q[0],
+          d = i.Event("slide.bs.carousel", { relatedTarget: e, direction: o });
+        if ((this.$element.trigger(d), !d.isDefaultPrevented())) {
           if (
-            ((this.sliding = !0), f && this.pause(), this.$indicators.length)
+            ((this.sliding = !0), p && this.pause(), this.$indicators.length)
           ) {
             this.$indicators.find(".active").removeClass("active");
-            var k = d(this.$indicators.children()[this.getItemIndex(y)]);
-            k && k.addClass("active");
+            var c = i(this.$indicators.children()[this.getItemIndex(q)]);
+            c && c.addClass("active");
           }
-          var l = d.Event("slid.bs.carousel", {
-            relatedTarget: i,
-            direction: g,
+          var b = i.Event("slid.bs.carousel", {
+            relatedTarget: e,
+            direction: o,
           });
           return (
-            d.support.transition && this.$element.hasClass("slide")
-              ? (y.addClass(m),
-                y[0].offsetWidth,
-                x.addClass(g),
-                y.addClass(g),
-                x
+            i.support.transition && this.$element.hasClass("slide")
+              ? (q.addClass(a),
+                q[0].offsetWidth,
+                r.addClass(o),
+                q.addClass(o),
+                r
                   .one("bsTransitionEnd", function () {
-                    y.removeClass([m, g].join(" ")).addClass("active"),
-                      x.removeClass(["active", g].join(" ")),
-                      (h.sliding = !1),
+                    q.removeClass([a, o].join(" ")).addClass("active"),
+                      r.removeClass(["active", o].join(" ")),
+                      (n.sliding = !1),
                       setTimeout(function () {
-                        h.$element.trigger(l);
+                        n.$element.trigger(b);
                       }, 0);
                   })
-                  .emulateTransitionEnd(a.TRANSITION_DURATION))
-              : (x.removeClass("active"),
-                y.addClass("active"),
+                  .emulateTransitionEnd(g.TRANSITION_DURATION))
+              : (r.removeClass("active"),
+                q.addClass("active"),
                 (this.sliding = !1),
-                this.$element.trigger(l)),
-            f && this.cycle(),
+                this.$element.trigger(b)),
+            p && this.cycle(),
             this
           );
         }
       });
-    var b = d.fn.carousel;
-    (d.fn.carousel = e),
-      (d.fn.carousel.Constructor = a),
-      (d.fn.carousel.noConflict = function () {
-        return (d.fn.carousel = b), this;
+    var f = i.fn.carousel;
+    (i.fn.carousel = h),
+      (i.fn.carousel.Constructor = g),
+      (i.fn.carousel.noConflict = function () {
+        return (i.fn.carousel = f), this;
       });
-    var c = function (o) {
-      var g,
-        i = d(this),
-        j = d(
-          i.attr("data-target") ||
-            ((g = i.attr("href")) && g.replace(/.*(?=#[^\s]+$)/, ""))
+    var j = function (k) {
+      var d,
+        b = i(this),
+        a = i(
+          b.attr("data-target") ||
+            ((d = b.attr("href")) && d.replace(/.*(?=#[^\s]+$)/, ""))
         );
-      if (j.hasClass("carousel")) {
-        var f = d.extend({}, j.data(), i.data()),
-          h = i.attr("data-slide-to");
-        h && (f.interval = !1),
-          e.call(j, f),
-          h && j.data("bs.carousel").to(h),
-          o.preventDefault();
+      if (a.hasClass("carousel")) {
+        var e = i.extend({}, a.data(), b.data()),
+          c = b.attr("data-slide-to");
+        c && (e.interval = !1),
+          h.call(a, e),
+          c && a.data("bs.carousel").to(c),
+          k.preventDefault();
       }
     };
-    d(document)
-      .on("click.bs.carousel.data-api", "[data-slide]", c)
-      .on("click.bs.carousel.data-api", "[data-slide-to]", c),
-      d(window).on("load", function () {
-        d('[data-ride="carousel"]').each(function () {
-          var f = d(this);
-          e.call(f, f.data());
+    i(document)
+      .on("click.bs.carousel.data-api", "[data-slide]", j)
+      .on("click.bs.carousel.data-api", "[data-slide-to]", j),
+      i(window).on("load", function () {
+        i('[data-ride="carousel"]').each(function () {
+          var a = i(this);
+          h.call(a, a.data());
         });
       });
   })(jQuery),
-  +(function (d) {
-    function e(f) {
-      var g,
-        h =
-          f.attr("data-target") ||
-          ((g = f.attr("href")) && g.replace(/.*(?=#[^\s]+$)/, ""));
-      return d(h);
+  +(function (i) {
+    function h(c) {
+      var b,
+        a =
+          c.attr("data-target") ||
+          ((b = c.attr("href")) && b.replace(/.*(?=#[^\s]+$)/, ""));
+      return i(a);
     }
-    function a(f) {
+    function g(a) {
       return this.each(function () {
-        var h = d(this),
-          i = h.data("bs.collapse"),
-          g = d.extend({}, b.DEFAULTS, h.data(), "object" == typeof f && f);
-        !i && g.toggle && /show|hide/.test(f) && (g.toggle = !1),
-          i || h.data("bs.collapse", (i = new b(this, g))),
-          "string" == typeof f && i[f]();
+        var c = i(this),
+          b = c.data("bs.collapse"),
+          d = i.extend({}, f.DEFAULTS, c.data(), "object" == typeof a && a);
+        !b && d.toggle && /show|hide/.test(a) && (d.toggle = !1),
+          b || c.data("bs.collapse", (b = new f(this, d))),
+          "string" == typeof a && b[a]();
       });
     }
-    var b = function (f, g) {
-      (this.$element = d(f)),
-        (this.options = d.extend({}, b.DEFAULTS, g)),
-        (this.$trigger = d(
+    var f = function (b, a) {
+      (this.$element = i(b)),
+        (this.options = i.extend({}, f.DEFAULTS, a)),
+        (this.$trigger = i(
           '[data-toggle="collapse"][href="#' +
-            f.id +
+            b.id +
             '"],[data-toggle="collapse"][data-target="#' +
-            f.id +
+            b.id +
             '"]'
         )),
         (this.transitioning = null),
@@ -407,259 +407,259 @@ if ("undefined" == typeof jQuery) {
           : this.addAriaAndCollapsedClass(this.$element, this.$trigger),
         this.options.toggle && this.toggle();
     };
-    (b.VERSION = "3.3.5"),
-      (b.TRANSITION_DURATION = 350),
-      (b.DEFAULTS = { toggle: !0 }),
-      (b.prototype.dimension = function () {
-        var f = this.$element.hasClass("width");
-        return f ? "width" : "height";
+    (f.VERSION = "3.3.5"),
+      (f.TRANSITION_DURATION = 350),
+      (f.DEFAULTS = { toggle: !0 }),
+      (f.prototype.dimension = function () {
+        var a = this.$element.hasClass("width");
+        return a ? "width" : "height";
       }),
-      (b.prototype.show = function () {
+      (f.prototype.show = function () {
         if (!this.transitioning && !this.$element.hasClass("in")) {
-          var h,
-            f =
+          var c,
+            e =
               this.$parent &&
               this.$parent.children(".panel").children(".in, .collapsing");
           if (
             !(
-              f &&
-              f.length &&
-              ((h = f.data("bs.collapse")), h && h.transitioning)
+              e &&
+              e.length &&
+              ((c = e.data("bs.collapse")), c && c.transitioning)
             )
           ) {
-            var g = d.Event("show.bs.collapse");
-            if ((this.$element.trigger(g), !g.isDefaultPrevented())) {
-              f &&
-                f.length &&
-                (a.call(f, "hide"), h || f.data("bs.collapse", null));
-              var i = this.dimension();
+            var d = i.Event("show.bs.collapse");
+            if ((this.$element.trigger(d), !d.isDefaultPrevented())) {
+              e &&
+                e.length &&
+                (g.call(e, "hide"), c || e.data("bs.collapse", null));
+              var b = this.dimension();
               this.$element
                 .removeClass("collapse")
                 .addClass("collapsing")
-                [i](0)
+                [b](0)
                 .attr("aria-expanded", !0),
                 this.$trigger
                   .removeClass("collapsed")
                   .attr("aria-expanded", !0),
                 (this.transitioning = 1);
-              var j = function () {
+              var a = function () {
                 this.$element
                   .removeClass("collapsing")
                   .addClass("collapse in")
-                  [i](""),
+                  [b](""),
                   (this.transitioning = 0),
                   this.$element.trigger("shown.bs.collapse");
               };
-              if (!d.support.transition) {
-                return j.call(this);
+              if (!i.support.transition) {
+                return a.call(this);
               }
-              var n = d.camelCase(["scroll", i].join("-"));
+              var k = i.camelCase(["scroll", b].join("-"));
               this.$element
-                .one("bsTransitionEnd", d.proxy(j, this))
-                .emulateTransitionEnd(b.TRANSITION_DURATION)
-                [i](this.$element[0][n]);
+                .one("bsTransitionEnd", i.proxy(a, this))
+                .emulateTransitionEnd(f.TRANSITION_DURATION)
+                [b](this.$element[0][k]);
             }
           }
         }
       }),
-      (b.prototype.hide = function () {
+      (f.prototype.hide = function () {
         if (!this.transitioning && this.$element.hasClass("in")) {
-          var f = d.Event("hide.bs.collapse");
-          if ((this.$element.trigger(f), !f.isDefaultPrevented())) {
-            var g = this.dimension();
-            this.$element[g](this.$element[g]())[0].offsetHeight,
+          var c = i.Event("hide.bs.collapse");
+          if ((this.$element.trigger(c), !c.isDefaultPrevented())) {
+            var b = this.dimension();
+            this.$element[b](this.$element[b]())[0].offsetHeight,
               this.$element
                 .addClass("collapsing")
                 .removeClass("collapse in")
                 .attr("aria-expanded", !1),
               this.$trigger.addClass("collapsed").attr("aria-expanded", !1),
               (this.transitioning = 1);
-            var h = function () {
+            var a = function () {
               (this.transitioning = 0),
                 this.$element
                   .removeClass("collapsing")
                   .addClass("collapse")
                   .trigger("hidden.bs.collapse");
             };
-            return d.support.transition
-              ? void this.$element[g](0)
-                  .one("bsTransitionEnd", d.proxy(h, this))
-                  .emulateTransitionEnd(b.TRANSITION_DURATION)
-              : h.call(this);
+            return i.support.transition
+              ? void this.$element[b](0)
+                  .one("bsTransitionEnd", i.proxy(a, this))
+                  .emulateTransitionEnd(f.TRANSITION_DURATION)
+              : a.call(this);
           }
         }
       }),
-      (b.prototype.toggle = function () {
+      (f.prototype.toggle = function () {
         this[this.$element.hasClass("in") ? "hide" : "show"]();
       }),
-      (b.prototype.getParent = function () {
-        return d(this.options.parent)
+      (f.prototype.getParent = function () {
+        return i(this.options.parent)
           .find(
             '[data-toggle="collapse"][data-parent="' +
               this.options.parent +
               '"]'
           )
           .each(
-            d.proxy(function (h, f) {
-              var g = d(f);
-              this.addAriaAndCollapsedClass(e(g), g);
+            i.proxy(function (a, c) {
+              var b = i(c);
+              this.addAriaAndCollapsedClass(h(b), b);
             }, this)
           )
           .end();
       }),
-      (b.prototype.addAriaAndCollapsedClass = function (g, h) {
-        var f = g.hasClass("in");
-        g.attr("aria-expanded", f),
-          h.toggleClass("collapsed", !f).attr("aria-expanded", f);
+      (f.prototype.addAriaAndCollapsedClass = function (b, a) {
+        var c = b.hasClass("in");
+        b.attr("aria-expanded", c),
+          a.toggleClass("collapsed", !c).attr("aria-expanded", c);
       });
-    var c = d.fn.collapse;
-    (d.fn.collapse = a),
-      (d.fn.collapse.Constructor = b),
-      (d.fn.collapse.noConflict = function () {
-        return (d.fn.collapse = c), this;
+    var j = i.fn.collapse;
+    (i.fn.collapse = g),
+      (i.fn.collapse.Constructor = f),
+      (i.fn.collapse.noConflict = function () {
+        return (i.fn.collapse = j), this;
       }),
-      d(document).on(
+      i(document).on(
         "click.bs.collapse.data-api",
         '[data-toggle="collapse"]',
-        function (h) {
-          var i = d(this);
-          i.attr("data-target") || h.preventDefault();
-          var j = e(i),
-            f = j.data("bs.collapse"),
-            g = f ? "toggle" : i.data();
-          a.call(j, g);
+        function (c) {
+          var b = i(this);
+          b.attr("data-target") || c.preventDefault();
+          var a = h(b),
+            e = a.data("bs.collapse"),
+            d = e ? "toggle" : b.data();
+          g.call(a, d);
         }
       );
   })(jQuery),
-  +(function (d) {
-    function e(i) {
-      var j = i.attr("data-target");
-      j ||
-        ((j = i.attr("href")),
-        (j = j && /#[A-Za-z]/.test(j) && j.replace(/.*(?=#[^\s]*$)/, "")));
-      var k = j && d(j);
-      return k && k.length ? k : i.parent();
+  +(function (o) {
+    function n(c) {
+      var b = c.attr("data-target");
+      b ||
+        ((b = c.attr("href")),
+        (b = b && /#[A-Za-z]/.test(b) && b.replace(/.*(?=#[^\s]*$)/, "")));
+      var a = b && o(b);
+      return a && a.length ? a : c.parent();
     }
-    function f(i) {
-      (i && 3 === i.which) ||
-        (d(h).remove(),
-        d(a).each(function () {
-          var k = d(this),
-            l = e(k),
-            j = { relatedTarget: this };
-          l.hasClass("open") &&
-            ((i &&
-              "click" == i.type &&
-              /input|textarea/i.test(i.target.tagName) &&
-              d.contains(l[0], i.target)) ||
-              (l.trigger((i = d.Event("hide.bs.dropdown", j))),
-              i.isDefaultPrevented() ||
-                (k.attr("aria-expanded", "false"),
-                l.removeClass("open").trigger("hidden.bs.dropdown", j))));
+    function m(a) {
+      (a && 3 === a.which) ||
+        (o(k).remove(),
+        o(j).each(function () {
+          var c = o(this),
+            b = n(c),
+            d = { relatedTarget: this };
+          b.hasClass("open") &&
+            ((a &&
+              "click" == a.type &&
+              /input|textarea/i.test(a.target.tagName) &&
+              o.contains(b[0], a.target)) ||
+              (b.trigger((a = o.Event("hide.bs.dropdown", d))),
+              a.isDefaultPrevented() ||
+                (c.attr("aria-expanded", "false"),
+                b.removeClass("open").trigger("hidden.bs.dropdown", d))));
         }));
     }
-    function g(i) {
+    function l(a) {
       return this.each(function () {
-        var k = d(this),
-          j = k.data("bs.dropdown");
-        j || k.data("bs.dropdown", (j = new b(this))),
-          "string" == typeof i && j[i].call(k);
+        var b = o(this),
+          c = b.data("bs.dropdown");
+        c || b.data("bs.dropdown", (c = new i(this))),
+          "string" == typeof a && c[a].call(b);
       });
     }
-    var h = ".dropdown-backdrop",
-      a = '[data-toggle="dropdown"]',
-      b = function (i) {
-        d(i).on("click.bs.dropdown", this.toggle);
+    var k = ".dropdown-backdrop",
+      j = '[data-toggle="dropdown"]',
+      i = function (a) {
+        o(a).on("click.bs.dropdown", this.toggle);
       };
-    (b.VERSION = "3.3.5"),
-      (b.prototype.toggle = function (k) {
-        var l = d(this);
-        if (!l.is(".disabled, :disabled")) {
-          var m = e(l),
-            i = m.hasClass("open");
-          if ((f(), !i)) {
+    (i.VERSION = "3.3.5"),
+      (i.prototype.toggle = function (c) {
+        var b = o(this);
+        if (!b.is(".disabled, :disabled")) {
+          var a = n(b),
+            e = a.hasClass("open");
+          if ((m(), !e)) {
             "ontouchstart" in document.documentElement &&
-              !m.closest(".navbar-nav").length &&
-              d(document.createElement("div"))
+              !a.closest(".navbar-nav").length &&
+              o(document.createElement("div"))
                 .addClass("dropdown-backdrop")
-                .insertAfter(d(this))
-                .on("click", f);
-            var j = { relatedTarget: this };
+                .insertAfter(o(this))
+                .on("click", m);
+            var d = { relatedTarget: this };
             if (
-              (m.trigger((k = d.Event("show.bs.dropdown", j))),
-              k.isDefaultPrevented())
+              (a.trigger((c = o.Event("show.bs.dropdown", d))),
+              c.isDefaultPrevented())
             ) {
               return;
             }
-            l.trigger("focus").attr("aria-expanded", "true"),
-              m.toggleClass("open").trigger("shown.bs.dropdown", j);
+            b.trigger("focus").attr("aria-expanded", "true"),
+              a.toggleClass("open").trigger("shown.bs.dropdown", d);
           }
           return !1;
         }
       }),
-      (b.prototype.keydown = function (k) {
+      (i.prototype.keydown = function (c) {
         if (
-          /(38|40|27|32)/.test(k.which) &&
-          !/input|textarea/i.test(k.target.tagName)
+          /(38|40|27|32)/.test(c.which) &&
+          !/input|textarea/i.test(c.target.tagName)
         ) {
-          var l = d(this);
+          var b = o(this);
           if (
-            (k.preventDefault(),
-            k.stopPropagation(),
-            !l.is(".disabled, :disabled"))
+            (c.preventDefault(),
+            c.stopPropagation(),
+            !b.is(".disabled, :disabled"))
           ) {
-            var m = e(l),
-              o = m.hasClass("open");
-            if ((!o && 27 != k.which) || (o && 27 == k.which)) {
+            var a = n(b),
+              f = a.hasClass("open");
+            if ((!f && 27 != c.which) || (f && 27 == c.which)) {
               return (
-                27 == k.which && m.find(a).trigger("focus"), l.trigger("click")
+                27 == c.which && a.find(j).trigger("focus"), b.trigger("click")
               );
             }
-            var n = " li:not(.disabled):visible a",
-              i = m.find(".dropdown-menu" + n);
-            if (i.length) {
-              var j = i.index(k.target);
-              38 == k.which && j > 0 && j--,
-                40 == k.which && j < i.length - 1 && j++,
-                ~j || (j = 0),
-                i.eq(j).trigger("focus");
+            var g = " li:not(.disabled):visible a",
+              e = a.find(".dropdown-menu" + g);
+            if (e.length) {
+              var d = e.index(c.target);
+              38 == c.which && d > 0 && d--,
+                40 == c.which && d < e.length - 1 && d++,
+                ~d || (d = 0),
+                e.eq(d).trigger("focus");
             }
           }
         }
       });
-    var c = d.fn.dropdown;
-    (d.fn.dropdown = g),
-      (d.fn.dropdown.Constructor = b),
-      (d.fn.dropdown.noConflict = function () {
-        return (d.fn.dropdown = c), this;
+    var p = o.fn.dropdown;
+    (o.fn.dropdown = l),
+      (o.fn.dropdown.Constructor = i),
+      (o.fn.dropdown.noConflict = function () {
+        return (o.fn.dropdown = p), this;
       }),
-      d(document)
-        .on("click.bs.dropdown.data-api", f)
-        .on("click.bs.dropdown.data-api", ".dropdown form", function (i) {
-          i.stopPropagation();
+      o(document)
+        .on("click.bs.dropdown.data-api", m)
+        .on("click.bs.dropdown.data-api", ".dropdown form", function (a) {
+          a.stopPropagation();
         })
-        .on("click.bs.dropdown.data-api", a, b.prototype.toggle)
-        .on("keydown.bs.dropdown.data-api", a, b.prototype.keydown)
+        .on("click.bs.dropdown.data-api", j, i.prototype.toggle)
+        .on("keydown.bs.dropdown.data-api", j, i.prototype.keydown)
         .on(
           "keydown.bs.dropdown.data-api",
           ".dropdown-menu",
-          b.prototype.keydown
+          i.prototype.keydown
         );
   })(jQuery),
-  +(function (c) {
-    function d(e, f) {
+  +(function (h) {
+    function g(b, a) {
       return this.each(function () {
-        var h = c(this),
-          j = h.data("bs.modal"),
-          g = c.extend({}, a.DEFAULTS, h.data(), "object" == typeof e && e);
-        j || h.data("bs.modal", (j = new a(this, g))),
-          "string" == typeof e ? j[e](f) : g.show && j.show(f);
+        var d = h(this),
+          c = d.data("bs.modal"),
+          i = h.extend({}, f.DEFAULTS, d.data(), "object" == typeof b && b);
+        c || d.data("bs.modal", (c = new f(this, i))),
+          "string" == typeof b ? c[b](a) : i.show && c.show(a);
       });
     }
-    var a = function (e, f) {
-      (this.options = f),
-        (this.$body = c(document.body)),
-        (this.$element = c(e)),
+    var f = function (b, a) {
+      (this.options = a),
+        (this.$body = h(document.body)),
+        (this.$element = h(b)),
         (this.$dialog = this.$element.find(".modal-dialog")),
         (this.$backdrop = null),
         (this.isShown = null),
@@ -669,24 +669,24 @@ if ("undefined" == typeof jQuery) {
         this.options.remote &&
           this.$element.find(".modal-content").load(
             this.options.remote,
-            c.proxy(function () {
+            h.proxy(function () {
               this.$element.trigger("loaded.bs.modal");
             }, this)
           );
     };
-    (a.VERSION = "3.3.5"),
-      (a.TRANSITION_DURATION = 300),
-      (a.BACKDROP_TRANSITION_DURATION = 150),
-      (a.DEFAULTS = { backdrop: !0, keyboard: !0, show: !0 }),
-      (a.prototype.toggle = function (e) {
-        return this.isShown ? this.hide() : this.show(e);
+    (f.VERSION = "3.3.5"),
+      (f.TRANSITION_DURATION = 300),
+      (f.BACKDROP_TRANSITION_DURATION = 150),
+      (f.DEFAULTS = { backdrop: !0, keyboard: !0, show: !0 }),
+      (f.prototype.toggle = function (a) {
+        return this.isShown ? this.hide() : this.show(a);
       }),
-      (a.prototype.show = function (e) {
-        var f = this,
-          g = c.Event("show.bs.modal", { relatedTarget: e });
-        this.$element.trigger(g),
+      (f.prototype.show = function (c) {
+        var b = this,
+          a = h.Event("show.bs.modal", { relatedTarget: c });
+        this.$element.trigger(a),
           this.isShown ||
-            g.isDefaultPrevented() ||
+            a.isDefaultPrevented() ||
             ((this.isShown = !0),
             this.checkScrollbar(),
             this.setScrollbar(),
@@ -696,220 +696,220 @@ if ("undefined" == typeof jQuery) {
             this.$element.on(
               "click.dismiss.bs.modal",
               '[data-dismiss="modal"]',
-              c.proxy(this.hide, this)
+              h.proxy(this.hide, this)
             ),
             this.$dialog.on("mousedown.dismiss.bs.modal", function () {
-              f.$element.one("mouseup.dismiss.bs.modal", function (h) {
-                c(h.target).is(f.$element) && (f.ignoreBackdropClick = !0);
+              b.$element.one("mouseup.dismiss.bs.modal", function (d) {
+                h(d.target).is(b.$element) && (b.ignoreBackdropClick = !0);
               });
             }),
             this.backdrop(function () {
-              var i = c.support.transition && f.$element.hasClass("fade");
-              f.$element.parent().length || f.$element.appendTo(f.$body),
-                f.$element.show().scrollTop(0),
-                f.adjustDialog(),
-                i && f.$element[0].offsetWidth,
-                f.$element.addClass("in"),
-                f.enforceFocus();
-              var h = c.Event("shown.bs.modal", { relatedTarget: e });
-              i
-                ? f.$dialog
+              var d = h.support.transition && b.$element.hasClass("fade");
+              b.$element.parent().length || b.$element.appendTo(b.$body),
+                b.$element.show().scrollTop(0),
+                b.adjustDialog(),
+                d && b.$element[0].offsetWidth,
+                b.$element.addClass("in"),
+                b.enforceFocus();
+              var j = h.Event("shown.bs.modal", { relatedTarget: c });
+              d
+                ? b.$dialog
                     .one("bsTransitionEnd", function () {
-                      f.$element.trigger("focus").trigger(h);
+                      b.$element.trigger("focus").trigger(j);
                     })
-                    .emulateTransitionEnd(a.TRANSITION_DURATION)
-                : f.$element.trigger("focus").trigger(h);
+                    .emulateTransitionEnd(f.TRANSITION_DURATION)
+                : b.$element.trigger("focus").trigger(j);
             }));
       }),
-      (a.prototype.hide = function (e) {
-        e && e.preventDefault(),
-          (e = c.Event("hide.bs.modal")),
-          this.$element.trigger(e),
+      (f.prototype.hide = function (a) {
+        a && a.preventDefault(),
+          (a = h.Event("hide.bs.modal")),
+          this.$element.trigger(a),
           this.isShown &&
-            !e.isDefaultPrevented() &&
+            !a.isDefaultPrevented() &&
             ((this.isShown = !1),
             this.escape(),
             this.resize(),
-            c(document).off("focusin.bs.modal"),
+            h(document).off("focusin.bs.modal"),
             this.$element
               .removeClass("in")
               .off("click.dismiss.bs.modal")
               .off("mouseup.dismiss.bs.modal"),
             this.$dialog.off("mousedown.dismiss.bs.modal"),
-            c.support.transition && this.$element.hasClass("fade")
+            h.support.transition && this.$element.hasClass("fade")
               ? this.$element
-                  .one("bsTransitionEnd", c.proxy(this.hideModal, this))
-                  .emulateTransitionEnd(a.TRANSITION_DURATION)
+                  .one("bsTransitionEnd", h.proxy(this.hideModal, this))
+                  .emulateTransitionEnd(f.TRANSITION_DURATION)
               : this.hideModal());
       }),
-      (a.prototype.enforceFocus = function () {
-        c(document)
+      (f.prototype.enforceFocus = function () {
+        h(document)
           .off("focusin.bs.modal")
           .on(
             "focusin.bs.modal",
-            c.proxy(function (e) {
-              this.$element[0] === e.target ||
-                this.$element.has(e.target).length ||
+            h.proxy(function (a) {
+              this.$element[0] === a.target ||
+                this.$element.has(a.target).length ||
                 this.$element.trigger("focus");
             }, this)
           );
       }),
-      (a.prototype.escape = function () {
+      (f.prototype.escape = function () {
         this.isShown && this.options.keyboard
           ? this.$element.on(
               "keydown.dismiss.bs.modal",
-              c.proxy(function (e) {
-                27 == e.which && this.hide();
+              h.proxy(function (a) {
+                27 == a.which && this.hide();
               }, this)
             )
           : this.isShown || this.$element.off("keydown.dismiss.bs.modal");
       }),
-      (a.prototype.resize = function () {
+      (f.prototype.resize = function () {
         this.isShown
-          ? c(window).on("resize.bs.modal", c.proxy(this.handleUpdate, this))
-          : c(window).off("resize.bs.modal");
+          ? h(window).on("resize.bs.modal", h.proxy(this.handleUpdate, this))
+          : h(window).off("resize.bs.modal");
       }),
-      (a.prototype.hideModal = function () {
-        var e = this;
+      (f.prototype.hideModal = function () {
+        var a = this;
         this.$element.hide(),
           this.backdrop(function () {
-            e.$body.removeClass("modal-open"),
-              e.resetAdjustments(),
-              e.resetScrollbar(),
-              e.$element.trigger("hidden.bs.modal");
+            a.$body.removeClass("modal-open"),
+              a.resetAdjustments(),
+              a.resetScrollbar(),
+              a.$element.trigger("hidden.bs.modal");
           });
       }),
-      (a.prototype.removeBackdrop = function () {
+      (f.prototype.removeBackdrop = function () {
         this.$backdrop && this.$backdrop.remove(), (this.$backdrop = null);
       }),
-      (a.prototype.backdrop = function (e) {
-        var f = this,
-          g = this.$element.hasClass("fade") ? "fade" : "";
+      (f.prototype.backdrop = function (i) {
+        var d = this,
+          c = this.$element.hasClass("fade") ? "fade" : "";
         if (this.isShown && this.options.backdrop) {
-          var h = c.support.transition && g;
+          var b = h.support.transition && c;
           if (
-            ((this.$backdrop = c(document.createElement("div"))
-              .addClass("modal-backdrop " + g)
+            ((this.$backdrop = h(document.createElement("div"))
+              .addClass("modal-backdrop " + c)
               .appendTo(this.$body)),
             this.$element.on(
               "click.dismiss.bs.modal",
-              c.proxy(function (i) {
+              h.proxy(function (j) {
                 return this.ignoreBackdropClick
                   ? void (this.ignoreBackdropClick = !1)
                   : void (
-                      i.target === i.currentTarget &&
+                      j.target === j.currentTarget &&
                       ("static" == this.options.backdrop
                         ? this.$element[0].focus()
                         : this.hide())
                     );
               }, this)
             ),
-            h && this.$backdrop[0].offsetWidth,
+            b && this.$backdrop[0].offsetWidth,
             this.$backdrop.addClass("in"),
-            !e)
+            !i)
           ) {
             return;
           }
-          h
+          b
             ? this.$backdrop
-                .one("bsTransitionEnd", e)
-                .emulateTransitionEnd(a.BACKDROP_TRANSITION_DURATION)
-            : e();
+                .one("bsTransitionEnd", i)
+                .emulateTransitionEnd(f.BACKDROP_TRANSITION_DURATION)
+            : i();
         } else {
           if (!this.isShown && this.$backdrop) {
             this.$backdrop.removeClass("in");
-            var l = function () {
-              f.removeBackdrop(), e && e();
+            var a = function () {
+              d.removeBackdrop(), i && i();
             };
-            c.support.transition && this.$element.hasClass("fade")
+            h.support.transition && this.$element.hasClass("fade")
               ? this.$backdrop
-                  .one("bsTransitionEnd", l)
-                  .emulateTransitionEnd(a.BACKDROP_TRANSITION_DURATION)
-              : l();
+                  .one("bsTransitionEnd", a)
+                  .emulateTransitionEnd(f.BACKDROP_TRANSITION_DURATION)
+              : a();
           } else {
-            e && e();
+            i && i();
           }
         }
       }),
-      (a.prototype.handleUpdate = function () {
+      (f.prototype.handleUpdate = function () {
         this.adjustDialog();
       }),
-      (a.prototype.adjustDialog = function () {
-        var e =
+      (f.prototype.adjustDialog = function () {
+        var a =
           this.$element[0].scrollHeight > document.documentElement.clientHeight;
         this.$element.css({
-          paddingLeft: !this.bodyIsOverflowing && e ? this.scrollbarWidth : "",
-          paddingRight: this.bodyIsOverflowing && !e ? this.scrollbarWidth : "",
+          paddingLeft: !this.bodyIsOverflowing && a ? this.scrollbarWidth : "",
+          paddingRight: this.bodyIsOverflowing && !a ? this.scrollbarWidth : "",
         });
       }),
-      (a.prototype.resetAdjustments = function () {
+      (f.prototype.resetAdjustments = function () {
         this.$element.css({ paddingLeft: "", paddingRight: "" });
       }),
-      (a.prototype.checkScrollbar = function () {
-        var e = window.innerWidth;
-        if (!e) {
-          var f = document.documentElement.getBoundingClientRect();
-          e = f.right - Math.abs(f.left);
+      (f.prototype.checkScrollbar = function () {
+        var b = window.innerWidth;
+        if (!b) {
+          var a = document.documentElement.getBoundingClientRect();
+          b = a.right - Math.abs(a.left);
         }
-        (this.bodyIsOverflowing = document.body.clientWidth < e),
+        (this.bodyIsOverflowing = document.body.clientWidth < b),
           (this.scrollbarWidth = this.measureScrollbar());
       }),
-      (a.prototype.setScrollbar = function () {
-        var e = parseInt(this.$body.css("padding-right") || 0, 10);
+      (f.prototype.setScrollbar = function () {
+        var a = parseInt(this.$body.css("padding-right") || 0, 10);
         (this.originalBodyPad = document.body.style.paddingRight || ""),
           this.bodyIsOverflowing &&
-            this.$body.css("padding-right", e + this.scrollbarWidth);
+            this.$body.css("padding-right", a + this.scrollbarWidth);
       }),
-      (a.prototype.resetScrollbar = function () {
+      (f.prototype.resetScrollbar = function () {
         this.$body.css("padding-right", this.originalBodyPad);
       }),
-      (a.prototype.measureScrollbar = function () {
-        var e = document.createElement("div");
-        (e.className = "modal-scrollbar-measure"), this.$body.append(e);
-        var f = e.offsetWidth - e.clientWidth;
-        return this.$body[0].removeChild(e), f;
+      (f.prototype.measureScrollbar = function () {
+        var b = document.createElement("div");
+        (b.className = "modal-scrollbar-measure"), this.$body.append(b);
+        var a = b.offsetWidth - b.clientWidth;
+        return this.$body[0].removeChild(b), a;
       });
-    var b = c.fn.modal;
-    (c.fn.modal = d),
-      (c.fn.modal.Constructor = a),
-      (c.fn.modal.noConflict = function () {
-        return (c.fn.modal = b), this;
+    var e = h.fn.modal;
+    (h.fn.modal = g),
+      (h.fn.modal.Constructor = f),
+      (h.fn.modal.noConflict = function () {
+        return (h.fn.modal = e), this;
       }),
-      c(document).on(
+      h(document).on(
         "click.bs.modal.data-api",
         '[data-toggle="modal"]',
-        function (g) {
-          var h = c(this),
-            l = h.attr("href"),
-            e = c(
-              h.attr("data-target") || (l && l.replace(/.*(?=#[^\s]+$)/, ""))
+        function (c) {
+          var b = h(this),
+            a = b.attr("href"),
+            i = h(
+              b.attr("data-target") || (a && a.replace(/.*(?=#[^\s]+$)/, ""))
             ),
-            f = e.data("bs.modal")
+            d = i.data("bs.modal")
               ? "toggle"
-              : c.extend({ remote: !/#/.test(l) && l }, e.data(), h.data());
-          h.is("a") && g.preventDefault(),
-            e.one("show.bs.modal", function (i) {
-              i.isDefaultPrevented() ||
-                e.one("hidden.bs.modal", function () {
-                  h.is(":visible") && h.trigger("focus");
+              : h.extend({ remote: !/#/.test(a) && a }, i.data(), b.data());
+          b.is("a") && c.preventDefault(),
+            i.one("show.bs.modal", function (j) {
+              j.isDefaultPrevented() ||
+                i.one("hidden.bs.modal", function () {
+                  b.is(":visible") && b.trigger("focus");
                 });
             }),
-            d.call(e, f, this);
+            g.call(i, d, this);
         }
       );
   })(jQuery),
-  +(function (c) {
-    function d(e) {
+  +(function (h) {
+    function g(a) {
       return this.each(function () {
-        var g = c(this),
-          h = g.data("bs.tooltip"),
-          f = "object" == typeof e && e;
-        (h || !/destroy|hide/.test(e)) &&
-          (h || g.data("bs.tooltip", (h = new a(this, f))),
-          "string" == typeof e && h[e]());
+        var c = h(this),
+          b = c.data("bs.tooltip"),
+          d = "object" == typeof a && a;
+        (b || !/destroy|hide/.test(a)) &&
+          (b || c.data("bs.tooltip", (b = new f(this, d))),
+          "string" == typeof a && b[a]());
       });
     }
-    var a = function (e, f) {
+    var f = function (b, a) {
       (this.type = null),
         (this.options = null),
         (this.enabled = null),
@@ -917,11 +917,11 @@ if ("undefined" == typeof jQuery) {
         (this.hoverState = null),
         (this.$element = null),
         (this.inState = null),
-        this.init("tooltip", e, f);
+        this.init("tooltip", b, a);
     };
-    (a.VERSION = "3.3.5"),
-      (a.TRANSITION_DURATION = 150),
-      (a.DEFAULTS = {
+    (f.VERSION = "3.3.5"),
+      (f.TRANSITION_DURATION = 150),
+      (f.DEFAULTS = {
         animation: !0,
         placement: "top",
         selector: !1,
@@ -934,16 +934,16 @@ if ("undefined" == typeof jQuery) {
         container: !1,
         viewport: { selector: "body", padding: 0 },
       }),
-      (a.prototype.init = function (g, q, r) {
+      (f.prototype.init = function (j, l, d) {
         if (
           ((this.enabled = !0),
-          (this.type = g),
-          (this.$element = c(q)),
-          (this.options = this.getOptions(r)),
+          (this.type = j),
+          (this.$element = h(l)),
+          (this.options = this.getOptions(d)),
           (this.$viewport =
             this.options.viewport &&
-            c(
-              c.isFunction(this.options.viewport)
+            h(
+              h.isFunction(this.options.viewport)
                 ? this.options.viewport.call(this, this.$element)
                 : this.options.viewport.selector || this.options.viewport
             )),
@@ -957,335 +957,335 @@ if ("undefined" == typeof jQuery) {
               " on the window.document object!"
           );
         }
-        for (var s = this.options.trigger.split(" "), e = s.length; e--; ) {
-          var f = s[e];
-          if ("click" == f) {
+        for (var c = this.options.trigger.split(" "), m = c.length; m--; ) {
+          var k = c[m];
+          if ("click" == k) {
             this.$element.on(
               "click." + this.type,
               this.options.selector,
-              c.proxy(this.toggle, this)
+              h.proxy(this.toggle, this)
             );
           } else {
-            if ("manual" != f) {
-              var h = "hover" == f ? "mouseenter" : "focusin",
-                i = "hover" == f ? "mouseleave" : "focusout";
+            if ("manual" != k) {
+              var b = "hover" == k ? "mouseenter" : "focusin",
+                a = "hover" == k ? "mouseleave" : "focusout";
               this.$element.on(
-                h + "." + this.type,
+                b + "." + this.type,
                 this.options.selector,
-                c.proxy(this.enter, this)
+                h.proxy(this.enter, this)
               ),
                 this.$element.on(
-                  i + "." + this.type,
+                  a + "." + this.type,
                   this.options.selector,
-                  c.proxy(this.leave, this)
+                  h.proxy(this.leave, this)
                 );
             }
           }
         }
         this.options.selector
-          ? (this._options = c.extend({}, this.options, {
+          ? (this._options = h.extend({}, this.options, {
               trigger: "manual",
               selector: "",
             }))
           : this.fixTitle();
       }),
-      (a.prototype.getDefaults = function () {
-        return a.DEFAULTS;
+      (f.prototype.getDefaults = function () {
+        return f.DEFAULTS;
       }),
-      (a.prototype.getOptions = function (e) {
+      (f.prototype.getOptions = function (a) {
         return (
-          (e = c.extend({}, this.getDefaults(), this.$element.data(), e)),
-          e.delay &&
-            "number" == typeof e.delay &&
-            (e.delay = { show: e.delay, hide: e.delay }),
-          e
+          (a = h.extend({}, this.getDefaults(), this.$element.data(), a)),
+          a.delay &&
+            "number" == typeof a.delay &&
+            (a.delay = { show: a.delay, hide: a.delay }),
+          a
         );
       }),
-      (a.prototype.getDelegateOptions = function () {
-        var e = {},
-          f = this.getDefaults();
+      (f.prototype.getDelegateOptions = function () {
+        var b = {},
+          a = this.getDefaults();
         return (
           this._options &&
-            c.each(this._options, function (g, h) {
-              f[g] != h && (e[g] = h);
+            h.each(this._options, function (d, c) {
+              a[d] != c && (b[d] = c);
             }),
-          e
+          b
         );
       }),
-      (a.prototype.enter = function (e) {
-        var f =
-          e instanceof this.constructor
-            ? e
-            : c(e.currentTarget).data("bs." + this.type);
+      (f.prototype.enter = function (b) {
+        var a =
+          b instanceof this.constructor
+            ? b
+            : h(b.currentTarget).data("bs." + this.type);
         return (
-          f ||
-            ((f = new this.constructor(
-              e.currentTarget,
+          a ||
+            ((a = new this.constructor(
+              b.currentTarget,
               this.getDelegateOptions()
             )),
-            c(e.currentTarget).data("bs." + this.type, f)),
-          e instanceof c.Event &&
-            (f.inState["focusin" == e.type ? "focus" : "hover"] = !0),
-          f.tip().hasClass("in") || "in" == f.hoverState
-            ? void (f.hoverState = "in")
-            : (clearTimeout(f.timeout),
-              (f.hoverState = "in"),
-              f.options.delay && f.options.delay.show
-                ? void (f.timeout = setTimeout(function () {
-                    "in" == f.hoverState && f.show();
-                  }, f.options.delay.show))
-                : f.show())
+            h(b.currentTarget).data("bs." + this.type, a)),
+          b instanceof h.Event &&
+            (a.inState["focusin" == b.type ? "focus" : "hover"] = !0),
+          a.tip().hasClass("in") || "in" == a.hoverState
+            ? void (a.hoverState = "in")
+            : (clearTimeout(a.timeout),
+              (a.hoverState = "in"),
+              a.options.delay && a.options.delay.show
+                ? void (a.timeout = setTimeout(function () {
+                    "in" == a.hoverState && a.show();
+                  }, a.options.delay.show))
+                : a.show())
         );
       }),
-      (a.prototype.isInStateTrue = function () {
-        for (var e in this.inState) {
-          if (this.inState[e]) {
+      (f.prototype.isInStateTrue = function () {
+        for (var a in this.inState) {
+          if (this.inState[a]) {
             return !0;
           }
         }
         return !1;
       }),
-      (a.prototype.leave = function (e) {
-        var f =
-          e instanceof this.constructor
-            ? e
-            : c(e.currentTarget).data("bs." + this.type);
+      (f.prototype.leave = function (b) {
+        var a =
+          b instanceof this.constructor
+            ? b
+            : h(b.currentTarget).data("bs." + this.type);
         return (
-          f ||
-            ((f = new this.constructor(
-              e.currentTarget,
+          a ||
+            ((a = new this.constructor(
+              b.currentTarget,
               this.getDelegateOptions()
             )),
-            c(e.currentTarget).data("bs." + this.type, f)),
-          e instanceof c.Event &&
-            (f.inState["focusout" == e.type ? "focus" : "hover"] = !1),
-          f.isInStateTrue()
+            h(b.currentTarget).data("bs." + this.type, a)),
+          b instanceof h.Event &&
+            (a.inState["focusout" == b.type ? "focus" : "hover"] = !1),
+          a.isInStateTrue()
             ? void 0
-            : (clearTimeout(f.timeout),
-              (f.hoverState = "out"),
-              f.options.delay && f.options.delay.hide
-                ? void (f.timeout = setTimeout(function () {
-                    "out" == f.hoverState && f.hide();
-                  }, f.options.delay.hide))
-                : f.hide())
+            : (clearTimeout(a.timeout),
+              (a.hoverState = "out"),
+              a.options.delay && a.options.delay.hide
+                ? void (a.timeout = setTimeout(function () {
+                    "out" == a.hoverState && a.hide();
+                  }, a.options.delay.hide))
+                : a.hide())
         );
       }),
-      (a.prototype.show = function () {
-        var f = c.Event("show.bs." + this.type);
+      (f.prototype.show = function () {
+        var y = h.Event("show.bs." + this.type);
         if (this.hasContent() && this.enabled) {
-          this.$element.trigger(f);
-          var g = c.contains(
+          this.$element.trigger(y);
+          var x = h.contains(
             this.$element[0].ownerDocument.documentElement,
             this.$element[0]
           );
-          if (f.isDefaultPrevented() || !g) {
+          if (y.isDefaultPrevented() || !x) {
             return;
           }
-          var h = this,
-            i = this.tip(),
-            k = this.getUID(this.type);
+          var w = this,
+            v = this.tip(),
+            t = this.getUID(this.type);
           this.setContent(),
-            i.attr("id", k),
-            this.$element.attr("aria-describedby", k),
-            this.options.animation && i.addClass("fade");
-          var l =
+            v.attr("id", t),
+            this.$element.attr("aria-describedby", t),
+            this.options.animation && v.addClass("fade");
+          var s =
               "function" == typeof this.options.placement
-                ? this.options.placement.call(this, i[0], this.$element[0])
+                ? this.options.placement.call(this, v[0], this.$element[0])
                 : this.options.placement,
-            n = /\s?auto?\s?/i,
-            o = n.test(l);
-          o && (l = l.replace(n, "") || "top"),
-            i
+            d = /\s?auto?\s?/i,
+            c = d.test(s);
+          c && (s = s.replace(d, "") || "top"),
+            v
               .detach()
               .css({ top: 0, left: 0, display: "block" })
-              .addClass(l)
+              .addClass(s)
               .data("bs." + this.type, this),
             this.options.container
-              ? i.appendTo(this.options.container)
-              : i.insertAfter(this.$element),
+              ? v.appendTo(this.options.container)
+              : v.insertAfter(this.$element),
             this.$element.trigger("inserted.bs." + this.type);
-          var p = this.getPosition(),
-            q = i[0].offsetWidth,
-            E = i[0].offsetHeight;
-          if (o) {
-            var F = l,
-              e = this.getPosition(this.$viewport);
-            (l =
-              "bottom" == l && p.bottom + E > e.bottom
+          var b = this.getPosition(),
+            a = v[0].offsetWidth,
+            B = v[0].offsetHeight;
+          if (c) {
+            var A = s,
+              z = this.getPosition(this.$viewport);
+            (s =
+              "bottom" == s && b.bottom + B > z.bottom
                 ? "top"
-                : "top" == l && p.top - E < e.top
+                : "top" == s && b.top - B < z.top
                 ? "bottom"
-                : "right" == l && p.right + q > e.width
+                : "right" == s && b.right + a > z.width
                 ? "left"
-                : "left" == l && p.left - q < e.left
+                : "left" == s && b.left - a < z.left
                 ? "right"
-                : l),
-              i.removeClass(F).addClass(l);
+                : s),
+              v.removeClass(A).addClass(s);
           }
-          var j = this.getCalculatedOffset(l, p, q, E);
-          this.applyPlacement(j, l);
-          var m = function () {
-            var r = h.hoverState;
-            h.$element.trigger("shown.bs." + h.type),
-              (h.hoverState = null),
-              "out" == r && h.leave(h);
+          var u = this.getCalculatedOffset(s, b, a, B);
+          this.applyPlacement(u, s);
+          var r = function () {
+            var i = w.hoverState;
+            w.$element.trigger("shown.bs." + w.type),
+              (w.hoverState = null),
+              "out" == i && w.leave(w);
           };
-          c.support.transition && this.$tip.hasClass("fade")
-            ? i
-                .one("bsTransitionEnd", m)
-                .emulateTransitionEnd(a.TRANSITION_DURATION)
-            : m();
+          h.support.transition && this.$tip.hasClass("fade")
+            ? v
+                .one("bsTransitionEnd", r)
+                .emulateTransitionEnd(f.TRANSITION_DURATION)
+            : r();
         }
       }),
-      (a.prototype.applyPlacement = function (i, j) {
-        var l = this.tip(),
-          m = l[0].offsetWidth,
-          n = l[0].offsetHeight,
-          A = parseInt(l.css("margin-top"), 10),
-          B = parseInt(l.css("margin-left"), 10);
-        isNaN(A) && (A = 0),
-          isNaN(B) && (B = 0),
-          (i.top += A),
-          (i.left += B),
-          c.offset.setOffset(
-            l[0],
-            c.extend(
+      (f.prototype.applyPlacement = function (s, r) {
+        var p = this.tip(),
+          o = p[0].offsetWidth,
+          d = p[0].offsetHeight,
+          c = parseInt(p.css("margin-top"), 10),
+          b = parseInt(p.css("margin-left"), 10);
+        isNaN(c) && (c = 0),
+          isNaN(b) && (b = 0),
+          (s.top += c),
+          (s.left += b),
+          h.offset.setOffset(
+            p[0],
+            h.extend(
               {
-                using: function (o) {
-                  l.css({ top: Math.round(o.top), left: Math.round(o.left) });
+                using: function (i) {
+                  p.css({ top: Math.round(i.top), left: Math.round(i.left) });
                 },
               },
-              i
+              s
             ),
             0
           ),
-          l.addClass("in");
-        var C = l[0].offsetWidth,
-          e = l[0].offsetHeight;
-        "top" == j && e != n && (i.top = i.top + n - e);
-        var f = this.getViewportAdjustedDelta(j, i, C, e);
-        f.left ? (i.left += f.left) : (i.top += f.top);
-        var g = /top|bottom/.test(j),
-          h = g ? 2 * f.left - m + C : 2 * f.top - n + e,
-          k = g ? "offsetWidth" : "offsetHeight";
-        l.offset(i), this.replaceArrow(h, l[0][k], g);
+          p.addClass("in");
+        var a = p[0].offsetWidth,
+          w = p[0].offsetHeight;
+        "top" == r && w != d && (s.top = s.top + d - w);
+        var v = this.getViewportAdjustedDelta(r, s, a, w);
+        v.left ? (s.left += v.left) : (s.top += v.top);
+        var u = /top|bottom/.test(r),
+          t = u ? 2 * v.left - o + a : 2 * v.top - d + w,
+          q = u ? "offsetWidth" : "offsetHeight";
+        p.offset(s), this.replaceArrow(t, p[0][q], u);
       }),
-      (a.prototype.replaceArrow = function (f, g, e) {
+      (f.prototype.replaceArrow = function (b, a, c) {
         this.arrow()
-          .css(e ? "left" : "top", 50 * (1 - f / g) + "%")
-          .css(e ? "top" : "left", "");
+          .css(c ? "left" : "top", 50 * (1 - b / a) + "%")
+          .css(c ? "top" : "left", "");
       }),
-      (a.prototype.setContent = function () {
-        var e = this.tip(),
-          f = this.getTitle();
-        e.find(".tooltip-inner")[this.options.html ? "html" : "text"](f),
-          e.removeClass("fade in top bottom left right");
+      (f.prototype.setContent = function () {
+        var b = this.tip(),
+          a = this.getTitle();
+        b.find(".tooltip-inner")[this.options.html ? "html" : "text"](a),
+          b.removeClass("fade in top bottom left right");
       }),
-      (a.prototype.hide = function (e) {
-        function f() {
-          "in" != g.hoverState && h.detach(),
-            g.$element
+      (f.prototype.hide = function (i) {
+        function d() {
+          "in" != c.hoverState && b.detach(),
+            c.$element
               .removeAttr("aria-describedby")
-              .trigger("hidden.bs." + g.type),
-            e && e();
+              .trigger("hidden.bs." + c.type),
+            i && i();
         }
-        var g = this,
-          h = c(this.$tip),
-          l = c.Event("hide.bs." + this.type);
+        var c = this,
+          b = h(this.$tip),
+          a = h.Event("hide.bs." + this.type);
         return (
-          this.$element.trigger(l),
-          l.isDefaultPrevented()
+          this.$element.trigger(a),
+          a.isDefaultPrevented()
             ? void 0
-            : (h.removeClass("in"),
-              c.support.transition && h.hasClass("fade")
-                ? h
-                    .one("bsTransitionEnd", f)
-                    .emulateTransitionEnd(a.TRANSITION_DURATION)
-                : f(),
+            : (b.removeClass("in"),
+              h.support.transition && b.hasClass("fade")
+                ? b
+                    .one("bsTransitionEnd", d)
+                    .emulateTransitionEnd(f.TRANSITION_DURATION)
+                : d(),
               (this.hoverState = null),
               this)
         );
       }),
-      (a.prototype.fixTitle = function () {
-        var e = this.$element;
-        (e.attr("title") || "string" != typeof e.attr("data-original-title")) &&
-          e
-            .attr("data-original-title", e.attr("title") || "")
+      (f.prototype.fixTitle = function () {
+        var a = this.$element;
+        (a.attr("title") || "string" != typeof a.attr("data-original-title")) &&
+          a
+            .attr("data-original-title", a.attr("title") || "")
             .attr("title", "");
       }),
-      (a.prototype.hasContent = function () {
+      (f.prototype.hasContent = function () {
         return this.getTitle();
       }),
-      (a.prototype.getPosition = function (g) {
-        g = g || this.$element;
-        var q = g[0],
-          e = "BODY" == q.tagName,
-          f = q.getBoundingClientRect();
-        null == f.width &&
-          (f = c.extend({}, f, {
-            width: f.right - f.left,
-            height: f.bottom - f.top,
+      (f.prototype.getPosition = function (b) {
+        b = b || this.$element;
+        var d = b[0],
+          j = "BODY" == d.tagName,
+          c = d.getBoundingClientRect();
+        null == c.width &&
+          (c = h.extend({}, c, {
+            width: c.right - c.left,
+            height: c.bottom - c.top,
           }));
-        var h = e ? { top: 0, left: 0 } : g.offset(),
-          o = {
-            scroll: e
+        var a = j ? { top: 0, left: 0 } : b.offset(),
+          k = {
+            scroll: j
               ? document.documentElement.scrollTop || document.body.scrollTop
-              : g.scrollTop(),
+              : b.scrollTop(),
           },
-          p = e
-            ? { width: c(window).width(), height: c(window).height() }
+          i = j
+            ? { width: h(window).width(), height: h(window).height() }
             : null;
-        return c.extend({}, f, o, p, h);
+        return h.extend({}, c, k, i, a);
       }),
-      (a.prototype.getCalculatedOffset = function (g, h, e, f) {
-        return "bottom" == g
-          ? { top: h.top + h.height, left: h.left + h.width / 2 - e / 2 }
-          : "top" == g
-          ? { top: h.top - f, left: h.left + h.width / 2 - e / 2 }
-          : "left" == g
-          ? { top: h.top + h.height / 2 - f / 2, left: h.left - e }
-          : { top: h.top + h.height / 2 - f / 2, left: h.left + h.width };
+      (f.prototype.getCalculatedOffset = function (b, a, d, c) {
+        return "bottom" == b
+          ? { top: a.top + a.height, left: a.left + a.width / 2 - d / 2 }
+          : "top" == b
+          ? { top: a.top - c, left: a.left + a.width / 2 - d / 2 }
+          : "left" == b
+          ? { top: a.top + a.height / 2 - c / 2, left: a.left - d }
+          : { top: a.top + a.height / 2 - c / 2, left: a.left + a.width };
       }),
-      (a.prototype.getViewportAdjustedDelta = function (w, x, y, z) {
-        var e = { top: 0, left: 0 };
+      (f.prototype.getViewportAdjustedDelta = function (r, q, p, o) {
+        var n = { top: 0, left: 0 };
         if (!this.$viewport) {
-          return e;
+          return n;
         }
-        var f = (this.options.viewport && this.options.viewport.padding) || 0,
-          g = this.getPosition(this.$viewport);
-        if (/right|left/.test(w)) {
-          var h = x.top - f - g.scroll,
-            i = x.top + f - g.scroll + z;
-          h < g.top
-            ? (e.top = g.top - h)
-            : i > g.top + g.height && (e.top = g.top + g.height - i);
+        var m = (this.options.viewport && this.options.viewport.padding) || 0,
+          l = this.getPosition(this.$viewport);
+        if (/right|left/.test(r)) {
+          var d = q.top - m - l.scroll,
+            c = q.top + m - l.scroll + o;
+          d < l.top
+            ? (n.top = l.top - d)
+            : c > l.top + l.height && (n.top = l.top + l.height - c);
         } else {
-          var j = x.left - f,
-            k = x.left + f + y;
-          j < g.left
-            ? (e.left = g.left - j)
-            : k > g.right && (e.left = g.left + g.width - k);
+          var b = q.left - m,
+            a = q.left + m + p;
+          b < l.left
+            ? (n.left = l.left - b)
+            : a > l.right && (n.left = l.left + l.width - a);
         }
-        return e;
+        return n;
       }),
-      (a.prototype.getTitle = function () {
-        var f,
-          g = this.$element,
-          e = this.options;
-        return (f =
-          g.attr("data-original-title") ||
-          ("function" == typeof e.title ? e.title.call(g[0]) : e.title));
+      (f.prototype.getTitle = function () {
+        var b,
+          a = this.$element,
+          c = this.options;
+        return (b =
+          a.attr("data-original-title") ||
+          ("function" == typeof c.title ? c.title.call(a[0]) : c.title));
       }),
-      (a.prototype.getUID = function (e) {
+      (f.prototype.getUID = function (a) {
         do {
-          e += ~~(1000000 * Math.random());
-        } while (document.getElementById(e));
-        return e;
+          a += ~~(1000000 * Math.random());
+        } while (document.getElementById(a));
+        return a;
       }),
-      (a.prototype.tip = function () {
+      (f.prototype.tip = function () {
         if (
           !this.$tip &&
-          ((this.$tip = c(this.options.template)), 1 != this.$tip.length)
+          ((this.$tip = h(this.options.template)), 1 != this.$tip.length)
         ) {
           throw new Error(
             this.type +
@@ -1294,129 +1294,129 @@ if ("undefined" == typeof jQuery) {
         }
         return this.$tip;
       }),
-      (a.prototype.arrow = function () {
+      (f.prototype.arrow = function () {
         return (this.$arrow = this.$arrow || this.tip().find(".tooltip-arrow"));
       }),
-      (a.prototype.enable = function () {
+      (f.prototype.enable = function () {
         this.enabled = !0;
       }),
-      (a.prototype.disable = function () {
+      (f.prototype.disable = function () {
         this.enabled = !1;
       }),
-      (a.prototype.toggleEnabled = function () {
+      (f.prototype.toggleEnabled = function () {
         this.enabled = !this.enabled;
       }),
-      (a.prototype.toggle = function (e) {
-        var f = this;
-        e &&
-          ((f = c(e.currentTarget).data("bs." + this.type)),
-          f ||
-            ((f = new this.constructor(
-              e.currentTarget,
+      (f.prototype.toggle = function (b) {
+        var a = this;
+        b &&
+          ((a = h(b.currentTarget).data("bs." + this.type)),
+          a ||
+            ((a = new this.constructor(
+              b.currentTarget,
               this.getDelegateOptions()
             )),
-            c(e.currentTarget).data("bs." + this.type, f))),
-          e
-            ? ((f.inState.click = !f.inState.click),
-              f.isInStateTrue() ? f.enter(f) : f.leave(f))
-            : f.tip().hasClass("in")
-            ? f.leave(f)
-            : f.enter(f);
+            h(b.currentTarget).data("bs." + this.type, a))),
+          b
+            ? ((a.inState.click = !a.inState.click),
+              a.isInStateTrue() ? a.enter(a) : a.leave(a))
+            : a.tip().hasClass("in")
+            ? a.leave(a)
+            : a.enter(a);
       }),
-      (a.prototype.destroy = function () {
-        var e = this;
+      (f.prototype.destroy = function () {
+        var a = this;
         clearTimeout(this.timeout),
           this.hide(function () {
-            e.$element.off("." + e.type).removeData("bs." + e.type),
-              e.$tip && e.$tip.detach(),
-              (e.$tip = null),
-              (e.$arrow = null),
-              (e.$viewport = null);
+            a.$element.off("." + a.type).removeData("bs." + a.type),
+              a.$tip && a.$tip.detach(),
+              (a.$tip = null),
+              (a.$arrow = null),
+              (a.$viewport = null);
           });
       });
-    var b = c.fn.tooltip;
-    (c.fn.tooltip = d),
-      (c.fn.tooltip.Constructor = a),
-      (c.fn.tooltip.noConflict = function () {
-        return (c.fn.tooltip = b), this;
+    var e = h.fn.tooltip;
+    (h.fn.tooltip = g),
+      (h.fn.tooltip.Constructor = f),
+      (h.fn.tooltip.noConflict = function () {
+        return (h.fn.tooltip = e), this;
       });
   })(jQuery),
-  +(function (c) {
-    function d(e) {
+  +(function (h) {
+    function g(a) {
       return this.each(function () {
-        var g = c(this),
-          h = g.data("bs.popover"),
-          f = "object" == typeof e && e;
-        (h || !/destroy|hide/.test(e)) &&
-          (h || g.data("bs.popover", (h = new a(this, f))),
-          "string" == typeof e && h[e]());
+        var c = h(this),
+          b = c.data("bs.popover"),
+          d = "object" == typeof a && a;
+        (b || !/destroy|hide/.test(a)) &&
+          (b || c.data("bs.popover", (b = new f(this, d))),
+          "string" == typeof a && b[a]());
       });
     }
-    var a = function (e, f) {
-      this.init("popover", e, f);
+    var f = function (b, a) {
+      this.init("popover", b, a);
     };
-    if (!c.fn.tooltip) {
+    if (!h.fn.tooltip) {
       throw new Error("Popover requires tooltip.js");
     }
-    (a.VERSION = "3.3.5"),
-      (a.DEFAULTS = c.extend({}, c.fn.tooltip.Constructor.DEFAULTS, {
+    (f.VERSION = "3.3.5"),
+      (f.DEFAULTS = h.extend({}, h.fn.tooltip.Constructor.DEFAULTS, {
         placement: "right",
         trigger: "click",
         content: "",
         template:
           '<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>',
       })),
-      (a.prototype = c.extend({}, c.fn.tooltip.Constructor.prototype)),
-      (a.prototype.constructor = a),
-      (a.prototype.getDefaults = function () {
-        return a.DEFAULTS;
+      (f.prototype = h.extend({}, h.fn.tooltip.Constructor.prototype)),
+      (f.prototype.constructor = f),
+      (f.prototype.getDefaults = function () {
+        return f.DEFAULTS;
       }),
-      (a.prototype.setContent = function () {
-        var f = this.tip(),
-          g = this.getTitle(),
-          e = this.getContent();
-        f.find(".popover-title")[this.options.html ? "html" : "text"](g),
-          f
+      (f.prototype.setContent = function () {
+        var b = this.tip(),
+          a = this.getTitle(),
+          c = this.getContent();
+        b.find(".popover-title")[this.options.html ? "html" : "text"](a),
+          b
             .find(".popover-content")
             .children()
             .detach()
             .end()
             [
               this.options.html
-                ? "string" == typeof e
+                ? "string" == typeof c
                   ? "html"
                   : "append"
                 : "text"
-            ](e),
-          f.removeClass("fade top bottom left right in"),
-          f.find(".popover-title").html() || f.find(".popover-title").hide();
+            ](c),
+          b.removeClass("fade top bottom left right in"),
+          b.find(".popover-title").html() || b.find(".popover-title").hide();
       }),
-      (a.prototype.hasContent = function () {
+      (f.prototype.hasContent = function () {
         return this.getTitle() || this.getContent();
       }),
-      (a.prototype.getContent = function () {
-        var e = this.$element,
-          f = this.options;
+      (f.prototype.getContent = function () {
+        var b = this.$element,
+          a = this.options;
         return (
-          e.attr("data-content") ||
-          ("function" == typeof f.content ? f.content.call(e[0]) : f.content)
+          b.attr("data-content") ||
+          ("function" == typeof a.content ? a.content.call(b[0]) : a.content)
         );
       }),
-      (a.prototype.arrow = function () {
+      (f.prototype.arrow = function () {
         return (this.$arrow = this.$arrow || this.tip().find(".arrow"));
       });
-    var b = c.fn.popover;
-    (c.fn.popover = d),
-      (c.fn.popover.Constructor = a),
-      (c.fn.popover.noConflict = function () {
-        return (c.fn.popover = b), this;
+    var e = h.fn.popover;
+    (h.fn.popover = g),
+      (h.fn.popover.Constructor = f),
+      (h.fn.popover.noConflict = function () {
+        return (h.fn.popover = e), this;
       });
   })(jQuery),
-  +(function (c) {
-    function d(e, f) {
-      (this.$body = c(document.body)),
-        (this.$scrollElement = c(c(e).is(document.body) ? window : e)),
-        (this.options = c.extend({}, d.DEFAULTS, f)),
+  +(function (h) {
+    function g(b, a) {
+      (this.$body = h(document.body)),
+        (this.$scrollElement = h(h(b).is(document.body) ? window : b)),
+        (this.options = h.extend({}, g.DEFAULTS, a)),
         (this.selector = (this.options.target || "") + " .nav li > a"),
         (this.offsets = []),
         (this.targets = []),
@@ -1424,23 +1424,23 @@ if ("undefined" == typeof jQuery) {
         (this.scrollHeight = 0),
         this.$scrollElement.on(
           "scroll.bs.scrollspy",
-          c.proxy(this.process, this)
+          h.proxy(this.process, this)
         ),
         this.refresh(),
         this.process();
     }
-    function a(e) {
+    function f(a) {
       return this.each(function () {
-        var g = c(this),
-          h = g.data("bs.scrollspy"),
-          f = "object" == typeof e && e;
-        h || g.data("bs.scrollspy", (h = new d(this, f))),
-          "string" == typeof e && h[e]();
+        var c = h(this),
+          b = c.data("bs.scrollspy"),
+          d = "object" == typeof a && a;
+        b || c.data("bs.scrollspy", (b = new g(this, d))),
+          "string" == typeof a && b[a]();
       });
     }
-    (d.VERSION = "3.3.5"),
-      (d.DEFAULTS = { offset: 10 }),
-      (d.prototype.getScrollHeight = function () {
+    (g.VERSION = "3.3.5"),
+      (g.DEFAULTS = { offset: 10 }),
+      (g.prototype.getScrollHeight = function () {
         return (
           this.$scrollElement[0].scrollHeight ||
           Math.max(
@@ -1449,282 +1449,282 @@ if ("undefined" == typeof jQuery) {
           )
         );
       }),
-      (d.prototype.refresh = function () {
-        var e = this,
-          f = "offset",
-          g = 0;
+      (g.prototype.refresh = function () {
+        var c = this,
+          b = "offset",
+          a = 0;
         (this.offsets = []),
           (this.targets = []),
           (this.scrollHeight = this.getScrollHeight()),
-          c.isWindow(this.$scrollElement[0]) ||
-            ((f = "position"), (g = this.$scrollElement.scrollTop())),
+          h.isWindow(this.$scrollElement[0]) ||
+            ((b = "position"), (a = this.$scrollElement.scrollTop())),
           this.$body
             .find(this.selector)
             .map(function () {
-              var j = c(this),
-                h = j.data("target") || j.attr("href"),
-                i = /^#./.test(h) && c(h);
+              var d = h(this),
+                l = d.data("target") || d.attr("href"),
+                k = /^#./.test(l) && h(l);
               return (
-                (i && i.length && i.is(":visible") && [[i[f]().top + g, h]]) ||
+                (k && k.length && k.is(":visible") && [[k[b]().top + a, l]]) ||
                 null
               );
             })
-            .sort(function (h, i) {
-              return h[0] - i[0];
+            .sort(function (j, d) {
+              return j[0] - d[0];
             })
             .each(function () {
-              e.offsets.push(this[0]), e.targets.push(this[1]);
+              c.offsets.push(this[0]), c.targets.push(this[1]);
             });
       }),
-      (d.prototype.process = function () {
-        var h,
-          p = this.$scrollElement.scrollTop() + this.options.offset,
-          q = this.getScrollHeight(),
-          r = this.options.offset + q - this.$scrollElement.height(),
-          e = this.offsets,
-          f = this.targets,
-          g = this.activeTarget;
-        if ((this.scrollHeight != q && this.refresh(), p >= r)) {
-          return g != (h = f[f.length - 1]) && this.activate(h);
+      (g.prototype.process = function () {
+        var a,
+          k = this.$scrollElement.scrollTop() + this.options.offset,
+          i = this.getScrollHeight(),
+          c = this.options.offset + i - this.$scrollElement.height(),
+          j = this.offsets,
+          d = this.targets,
+          b = this.activeTarget;
+        if ((this.scrollHeight != i && this.refresh(), k >= c)) {
+          return b != (a = d[d.length - 1]) && this.activate(a);
         }
-        if (g && p < e[0]) {
+        if (b && k < j[0]) {
           return (this.activeTarget = null), this.clear();
         }
-        for (h = e.length; h--; ) {
-          g != f[h] &&
-            p >= e[h] &&
-            (void 0 === e[h + 1] || p < e[h + 1]) &&
-            this.activate(f[h]);
+        for (a = j.length; a--; ) {
+          b != d[a] &&
+            k >= j[a] &&
+            (void 0 === j[a + 1] || k < j[a + 1]) &&
+            this.activate(d[a]);
         }
       }),
-      (d.prototype.activate = function (e) {
-        (this.activeTarget = e), this.clear();
-        var f =
+      (g.prototype.activate = function (c) {
+        (this.activeTarget = c), this.clear();
+        var b =
             this.selector +
             '[data-target="' +
-            e +
+            c +
             '"],' +
             this.selector +
             '[href="' +
-            e +
+            c +
             '"]',
-          g = c(f).parents("li").addClass("active");
-        g.parent(".dropdown-menu").length &&
-          (g = g.closest("li.dropdown").addClass("active")),
-          g.trigger("activate.bs.scrollspy");
+          a = h(b).parents("li").addClass("active");
+        a.parent(".dropdown-menu").length &&
+          (a = a.closest("li.dropdown").addClass("active")),
+          a.trigger("activate.bs.scrollspy");
       }),
-      (d.prototype.clear = function () {
-        c(this.selector)
+      (g.prototype.clear = function () {
+        h(this.selector)
           .parentsUntil(this.options.target, ".active")
           .removeClass("active");
       });
-    var b = c.fn.scrollspy;
-    (c.fn.scrollspy = a),
-      (c.fn.scrollspy.Constructor = d),
-      (c.fn.scrollspy.noConflict = function () {
-        return (c.fn.scrollspy = b), this;
+    var e = h.fn.scrollspy;
+    (h.fn.scrollspy = f),
+      (h.fn.scrollspy.Constructor = g),
+      (h.fn.scrollspy.noConflict = function () {
+        return (h.fn.scrollspy = e), this;
       }),
-      c(window).on("load.bs.scrollspy.data-api", function () {
-        c('[data-spy="scroll"]').each(function () {
-          var e = c(this);
-          a.call(e, e.data());
+      h(window).on("load.bs.scrollspy.data-api", function () {
+        h('[data-spy="scroll"]').each(function () {
+          var a = h(this);
+          f.call(a, a.data());
         });
       });
   })(jQuery),
-  +(function (d) {
-    function e(f) {
+  +(function (i) {
+    function h(a) {
       return this.each(function () {
-        var h = d(this),
-          g = h.data("bs.tab");
-        g || h.data("bs.tab", (g = new a(this))),
-          "string" == typeof f && g[f]();
+        var b = i(this),
+          c = b.data("bs.tab");
+        c || b.data("bs.tab", (c = new g(this))),
+          "string" == typeof a && c[a]();
       });
     }
-    var a = function (f) {
-      this.element = d(f);
+    var g = function (a) {
+      this.element = i(a);
     };
-    (a.VERSION = "3.3.5"),
-      (a.TRANSITION_DURATION = 150),
-      (a.prototype.show = function () {
-        var h = this.element,
-          j = h.closest("ul:not(.dropdown-menu)"),
-          q = h.data("target");
+    (g.VERSION = "3.3.5"),
+      (g.TRANSITION_DURATION = 150),
+      (g.prototype.show = function () {
+        var c = this.element,
+          a = c.closest("ul:not(.dropdown-menu)"),
+          l = c.data("target");
         if (
-          (q ||
-            ((q = h.attr("href")), (q = q && q.replace(/.*(?=#[^\s]*$)/, ""))),
-          !h.parent("li").hasClass("active"))
+          (l ||
+            ((l = c.attr("href")), (l = l && l.replace(/.*(?=#[^\s]*$)/, ""))),
+          !c.parent("li").hasClass("active"))
         ) {
-          var r = j.find(".active:last a"),
-            f = d.Event("hide.bs.tab", { relatedTarget: h[0] }),
-            g = d.Event("show.bs.tab", { relatedTarget: r[0] });
+          var e = a.find(".active:last a"),
+            k = i.Event("hide.bs.tab", { relatedTarget: c[0] }),
+            d = i.Event("show.bs.tab", { relatedTarget: e[0] });
           if (
-            (r.trigger(f),
-            h.trigger(g),
-            !g.isDefaultPrevented() && !f.isDefaultPrevented())
+            (e.trigger(k),
+            c.trigger(d),
+            !d.isDefaultPrevented() && !k.isDefaultPrevented())
           ) {
-            var i = d(q);
-            this.activate(h.closest("li"), j),
-              this.activate(i, i.parent(), function () {
-                r.trigger({ type: "hidden.bs.tab", relatedTarget: h[0] }),
-                  h.trigger({ type: "shown.bs.tab", relatedTarget: r[0] });
+            var b = i(l);
+            this.activate(c.closest("li"), a),
+              this.activate(b, b.parent(), function () {
+                e.trigger({ type: "hidden.bs.tab", relatedTarget: c[0] }),
+                  c.trigger({ type: "shown.bs.tab", relatedTarget: e[0] });
               });
           }
         }
       }),
-      (a.prototype.activate = function (h, o, f) {
-        function g() {
-          i
+      (g.prototype.activate = function (c, k, e) {
+        function d() {
+          b
             .removeClass("active")
             .find("> .dropdown-menu > .active")
             .removeClass("active")
             .end()
             .find('[data-toggle="tab"]')
             .attr("aria-expanded", !1),
-            h
+            c
               .addClass("active")
               .find('[data-toggle="tab"]')
               .attr("aria-expanded", !0),
-            j ? (h[0].offsetWidth, h.addClass("in")) : h.removeClass("fade"),
-            h.parent(".dropdown-menu").length &&
-              h
+            a ? (c[0].offsetWidth, c.addClass("in")) : c.removeClass("fade"),
+            c.parent(".dropdown-menu").length &&
+              c
                 .closest("li.dropdown")
                 .addClass("active")
                 .end()
                 .find('[data-toggle="tab"]')
                 .attr("aria-expanded", !0),
-            f && f();
+            e && e();
         }
-        var i = o.find("> .active"),
-          j =
-            f &&
-            d.support.transition &&
-            ((i.length && i.hasClass("fade")) || !!o.find("> .fade").length);
-        i.length && j
-          ? i
-              .one("bsTransitionEnd", g)
-              .emulateTransitionEnd(a.TRANSITION_DURATION)
-          : g(),
-          i.removeClass("in");
+        var b = k.find("> .active"),
+          a =
+            e &&
+            i.support.transition &&
+            ((b.length && b.hasClass("fade")) || !!k.find("> .fade").length);
+        b.length && a
+          ? b
+              .one("bsTransitionEnd", d)
+              .emulateTransitionEnd(g.TRANSITION_DURATION)
+          : d(),
+          b.removeClass("in");
       });
-    var b = d.fn.tab;
-    (d.fn.tab = e),
-      (d.fn.tab.Constructor = a),
-      (d.fn.tab.noConflict = function () {
-        return (d.fn.tab = b), this;
+    var f = i.fn.tab;
+    (i.fn.tab = h),
+      (i.fn.tab.Constructor = g),
+      (i.fn.tab.noConflict = function () {
+        return (i.fn.tab = f), this;
       });
-    var c = function (f) {
-      f.preventDefault(), e.call(d(this), "show");
+    var j = function (a) {
+      a.preventDefault(), h.call(i(this), "show");
     };
-    d(document)
-      .on("click.bs.tab.data-api", '[data-toggle="tab"]', c)
-      .on("click.bs.tab.data-api", '[data-toggle="pill"]', c);
+    i(document)
+      .on("click.bs.tab.data-api", '[data-toggle="tab"]', j)
+      .on("click.bs.tab.data-api", '[data-toggle="pill"]', j);
   })(jQuery),
-  +(function (c) {
-    function d(e) {
+  +(function (h) {
+    function g(a) {
       return this.each(function () {
-        var g = c(this),
-          h = g.data("bs.affix"),
-          f = "object" == typeof e && e;
-        h || g.data("bs.affix", (h = new a(this, f))),
-          "string" == typeof e && h[e]();
+        var c = h(this),
+          b = c.data("bs.affix"),
+          d = "object" == typeof a && a;
+        b || c.data("bs.affix", (b = new f(this, d))),
+          "string" == typeof a && b[a]();
       });
     }
-    var a = function (e, f) {
-      (this.options = c.extend({}, a.DEFAULTS, f)),
-        (this.$target = c(this.options.target)
-          .on("scroll.bs.affix.data-api", c.proxy(this.checkPosition, this))
+    var f = function (b, a) {
+      (this.options = h.extend({}, f.DEFAULTS, a)),
+        (this.$target = h(this.options.target)
+          .on("scroll.bs.affix.data-api", h.proxy(this.checkPosition, this))
           .on(
             "click.bs.affix.data-api",
-            c.proxy(this.checkPositionWithEventLoop, this)
+            h.proxy(this.checkPositionWithEventLoop, this)
           )),
-        (this.$element = c(e)),
+        (this.$element = h(b)),
         (this.affixed = null),
         (this.unpin = null),
         (this.pinnedOffset = null),
         this.checkPosition();
     };
-    (a.VERSION = "3.3.5"),
-      (a.RESET = "affix affix-top affix-bottom"),
-      (a.DEFAULTS = { offset: 0, target: window }),
-      (a.prototype.getState = function (w, x, e, f) {
-        var g = this.$target.scrollTop(),
-          h = this.$element.offset(),
-          i = this.$target.height();
-        if (null != e && "top" == this.affixed) {
-          return e > g ? "top" : !1;
+    (f.VERSION = "3.3.5"),
+      (f.RESET = "affix affix-top affix-bottom"),
+      (f.DEFAULTS = { offset: 0, target: window }),
+      (f.prototype.getState = function (n, m, l, k) {
+        var d = this.$target.scrollTop(),
+          c = this.$element.offset(),
+          b = this.$target.height();
+        if (null != l && "top" == this.affixed) {
+          return l > d ? "top" : !1;
         }
         if ("bottom" == this.affixed) {
-          return null != e
-            ? g + this.unpin <= h.top
+          return null != l
+            ? d + this.unpin <= c.top
               ? !1
               : "bottom"
-            : w - f >= g + i
+            : n - k >= d + b
             ? !1
             : "bottom";
         }
-        var j = null == this.affixed,
-          u = j ? g : h.top,
-          v = j ? i : x;
-        return null != e && e >= g
+        var a = null == this.affixed,
+          p = a ? d : c.top,
+          o = a ? b : m;
+        return null != l && l >= d
           ? "top"
-          : null != f && u + v >= w - f
+          : null != k && p + o >= n - k
           ? "bottom"
           : !1;
       }),
-      (a.prototype.getPinnedOffset = function () {
+      (f.prototype.getPinnedOffset = function () {
         if (this.pinnedOffset) {
           return this.pinnedOffset;
         }
-        this.$element.removeClass(a.RESET).addClass("affix");
-        var e = this.$target.scrollTop(),
-          f = this.$element.offset();
-        return (this.pinnedOffset = f.top - e);
+        this.$element.removeClass(f.RESET).addClass("affix");
+        var b = this.$target.scrollTop(),
+          a = this.$element.offset();
+        return (this.pinnedOffset = a.top - b);
       }),
-      (a.prototype.checkPositionWithEventLoop = function () {
-        setTimeout(c.proxy(this.checkPosition, this), 1);
+      (f.prototype.checkPositionWithEventLoop = function () {
+        setTimeout(h.proxy(this.checkPosition, this), 1);
       }),
-      (a.prototype.checkPosition = function () {
+      (f.prototype.checkPosition = function () {
         if (this.$element.is(":visible")) {
-          var g = this.$element.height(),
-            i = this.options.offset,
-            j = i.top,
-            r = i.bottom,
-            e = Math.max(c(document).height(), c(document.body).height());
-          "object" != typeof i && (r = j = i),
-            "function" == typeof j && (j = i.top(this.$element)),
-            "function" == typeof r && (r = i.bottom(this.$element));
-          var f = this.getState(e, g, j, r);
-          if (this.affixed != f) {
+          var k = this.$element.height(),
+            b = this.options.offset,
+            a = b.top,
+            d = b.bottom,
+            n = Math.max(h(document).height(), h(document.body).height());
+          "object" != typeof b && (d = a = b),
+            "function" == typeof a && (a = b.top(this.$element)),
+            "function" == typeof d && (d = b.bottom(this.$element));
+          var m = this.getState(n, k, a, d);
+          if (this.affixed != m) {
             null != this.unpin && this.$element.css("top", "");
-            var h = "affix" + (f ? "-" + f : ""),
-              q = c.Event(h + ".bs.affix");
-            if ((this.$element.trigger(q), q.isDefaultPrevented())) {
+            var c = "affix" + (m ? "-" + m : ""),
+              l = h.Event(c + ".bs.affix");
+            if ((this.$element.trigger(l), l.isDefaultPrevented())) {
               return;
             }
-            (this.affixed = f),
-              (this.unpin = "bottom" == f ? this.getPinnedOffset() : null),
+            (this.affixed = m),
+              (this.unpin = "bottom" == m ? this.getPinnedOffset() : null),
               this.$element
-                .removeClass(a.RESET)
-                .addClass(h)
-                .trigger(h.replace("affix", "affixed") + ".bs.affix");
+                .removeClass(f.RESET)
+                .addClass(c)
+                .trigger(c.replace("affix", "affixed") + ".bs.affix");
           }
-          "bottom" == f && this.$element.offset({ top: e - g - r });
+          "bottom" == m && this.$element.offset({ top: n - k - d });
         }
       });
-    var b = c.fn.affix;
-    (c.fn.affix = d),
-      (c.fn.affix.Constructor = a),
-      (c.fn.affix.noConflict = function () {
-        return (c.fn.affix = b), this;
+    var e = h.fn.affix;
+    (h.fn.affix = g),
+      (h.fn.affix.Constructor = f),
+      (h.fn.affix.noConflict = function () {
+        return (h.fn.affix = e), this;
       }),
-      c(window).on("load", function () {
-        c('[data-spy="affix"]').each(function () {
-          var e = c(this),
-            f = e.data();
-          (f.offset = f.offset || {}),
-            null != f.offsetBottom && (f.offset.bottom = f.offsetBottom),
-            null != f.offsetTop && (f.offset.top = f.offsetTop),
-            d.call(e, f);
+      h(window).on("load", function () {
+        h('[data-spy="affix"]').each(function () {
+          var b = h(this),
+            a = b.data();
+          (a.offset = a.offset || {}),
+            null != a.offsetBottom && (a.offset.bottom = a.offsetBottom),
+            null != a.offsetTop && (a.offset.top = a.offsetTop),
+            g.call(b, a);
         });
       });
   })(jQuery);

@@ -9,6 +9,10 @@ html {
   -ms-text-size-adjust: 100%;
   overflow: auto;
 }
+.colm-sm-12_sizeText {
+  font-family: "Open Sans", sans-serif;
+}
+
 body {
   margin: 0;
   overflow: hidden;
@@ -1691,6 +1695,13 @@ pre code {
 .col-xs-12 {
   width: 100%;
 }
+.col-xs-12_fontsize {
+  font-size: 20px !important;
+  font-size: 20px !important;
+  font-weight: inherit !important;
+  line-height: 20px;
+  font-style: italic;
+}
 .col-xs-11 {
   width: 91.66666667%;
 }
@@ -1858,6 +1869,16 @@ pre code {
   }
   .col-sm-12 {
     width: 100%;
+  }
+  .colm-sm-12_sizeText {
+    font-size: 20px !important;
+    color: #656565 !important;
+    font-weight: bolder;
+    word-spacing: -1px;
+  }
+  .col-xs-12_auteur {
+    font-size: 20px;
+    font-weight: lighter !important;
   }
   .col-sm-11 {
     width: 91.66666667%;
